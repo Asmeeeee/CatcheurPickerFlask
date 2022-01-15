@@ -13,7 +13,7 @@ class AuthorForm(FlaskForm):
 @app.route("/")
 def home():
     return render_template(
-        "home.html",
+        "accueil.html",
         title = "Listes de film pour se faire chier",
         books = get_sample()
     )
