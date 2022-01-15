@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block main %}
+<h1>Salut mon pote</h1>
+
+<div class="row">
+    {% for book in books %}
+    <div class="col-sm-2 col-md-4 col-lg-3">
+        <div class="card mb-4 shadow-sm">
+            <img class="card-img mx-auto mt-4" src="{{ url_for('static', filename='images/'+book.img) }}" alt ="{{ book.title }}"/>
+            <div class="card-body">
+                <a href="{{ book.url }}"> {{ book.title }}</a>
+                <p>Auteur : {{ book.author }}</p>
+                <p>Prix : {{ book.price }}€</p>
+                <a href="{{ book.url }}" class="btn btn-primary">
+                    Acheter
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+</div>
+{% endblock %}
