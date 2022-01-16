@@ -19,6 +19,19 @@ def get_book_detail(bookid):
 def get_author(id):
     return Author.query.get_or_404(id)
 
+def get_star_detail(starid):
+    return Star.query.get_or_404(starid)
+
+class Star(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nom = db.Column(db.String(100))
+    prenom = db.Column(db.String(100))
+    dateNaiss = db.Column(db.String(100))
+    img = db.Column(db.String(100))
+
+    def __repr__(self):
+        return "<Star (%d) %s>" % (self.nom, self.prenom)
+
 class Author(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
