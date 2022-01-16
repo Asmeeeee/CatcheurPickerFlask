@@ -50,7 +50,7 @@ def save_author():
     return render_template("edit_author.html",author=a, form=f)
 
 @app.route("/author/<int:id>")
-def one_author():
+def one_author(id):
     auteur = get_author(id)
     return render_template(
         "home.html",
