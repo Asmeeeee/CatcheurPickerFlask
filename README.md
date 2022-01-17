@@ -91,3 +91,31 @@ For open source projects, say how it is licensed.
 ## Project status
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
 
+
+- Name : Jewelz
+  LastName : Blue
+  DateNaiss : 21-09-1994
+  img : jewelzBlu.jpg
+  idUser : 2
+- Name : Brandi
+  LastName : Love
+  DateNaiss : 19-03-1973
+  img : brandiLove.jpg
+  idUser : 3
+- Name : Abella
+  LastName : Danger
+  DateNaiss : 19-11-1995
+  img : abellaDanger.jpg
+  idUser : 3
+- Name : Mia
+  LastName : Khalifa
+  DateNaiss : 10-02-1993
+  img : miaKhalifa.jpg
+  idUser : 3
+- Name : Riley
+  LastName : Reid
+  DateNaiss : 09-07-1991
+  img : rileyReid.jpg
+  idUser : 2
+
+

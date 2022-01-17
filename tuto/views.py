@@ -1,6 +1,6 @@
 from .app import app, db
 from flask import render_template, redirect, url_for
-from .models import Author, get_sample, get_book_detail, get_author
+from .models import *
 from flask_wtf import FlaskForm
 from wtforms import StringField, HiddenField, validators
 #from wtforms.validators import DataRequired, validators
