@@ -26,7 +26,7 @@ def loaddb(filename):
     for s in star:
         a = s["idUser"]
         if a not in stars:
-            nouveau = Star(userName=a)
+            nouveau = Star(starNom=a)
             # On ajoute l'obj nouveau à la base
             db.session.add(nouveau)
             star[a] = nouveau
@@ -36,12 +36,12 @@ def loaddb(filename):
 
     #Création des livres
     for b in star:
-        a = star[b["id"]]
-        star = Star(nom = b["LastName"],
+        a = stars[1] #b["starId"]
+        diva = Star(nom = b["LastName"],
                     prenom = b["Name"],
                     dateNaiss = b["DateNaiss"],
                     img = b["img"],
                     userId = b["idUser"])
     #On ajoute l'objet o à la base
-        db.session.add(star)
+        db.session.add(diva)
     db.session.commit()
