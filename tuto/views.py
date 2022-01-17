@@ -13,12 +13,16 @@ class AuthorForm(FlaskForm):
 @app.route("/")
 def home():
     return render_template(
-        "accueil.html",
+        "home.html",
         title = "Listes de film pour se faire chier",
         books = get_sample()
     )
 
-@app.route("/edit/author")
+@app.route("/edit")
+def edit():
+    return render_template( 'edit.html' )
+
+
 @app.route("/edit/author/<int:id>")
 def edit_author(id=None):
     nom = None

@@ -1,0 +1,12 @@
+.bite{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section > div > div > div > img{
+    display: flex;
+    flex: auto;
+    height: 500px;
+    width: 500px;
+}
+
