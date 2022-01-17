@@ -18,9 +18,18 @@ def home():
         books = get_sample()
     )
 
-@app.route("/edit")
-def edit():
-    return render_template( 'edit.html' )
+@app.route("/editSupprimer")
+def editSupprimer():
+    return render_template( 'edit/editSupprimer.html' )
+
+@app.route("/editAjouter")
+def editAjouter():
+    return render_template( 'edit/editAjouter.html' )    
+
+
+@app.route("/editModifier")
+def editModifier():
+    return render_template( 'edit/editModifier.html' )   
 
 
 @app.route("/edit/author/<int:id>")
