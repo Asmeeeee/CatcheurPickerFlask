@@ -1,3 +1,18 @@
+- Name : Dwayne
+  LastName : Johnson
+  DateNaiss : 02-05-1972
+  img : theRock.jpg
+  userMail : max.sevot@gmail.com
+- Name : Cena
+  LastName : John
+  DateNaiss : 23-04-1977
+  img : johnCena.jpg
+  userMail : max.sevot@gmail.com
+- Name : Lee
+  LastName : AJ
+  DateNaiss : 19-03-1987
+  img : ajLee.jpg
+  userMail : max.sevot@gmail.com
 - Name : Nathalie
   LastName : Knight
   DateNaiss : 17-05-2000
@@ -27,4 +42,24 @@
   LastName : Reid
   DateNaiss : 09-07-1991
   img : rileyReid.jpg
+  userMail : max.sevot@gmail.com
+- Name : Kush
+  LastName : Katie
+  DateNaiss : 21-04-1997
+  img : katieKush.jpg
+  userMail : max.sevot@gmail.com
+- Name : Polina
+  LastName : Anna
+  DateNaiss : 11-09-1989
+  img : annaPolina.jpg
+  userMail : max.sevot@gmail.com
+- Name : Texas
+  LastName : Alexis
+  DateNaiss : 25-05-1985
+  img : alexisTexas.jpg
+  userMail : max.sevot@gmail.com
+- Name : Rhoades
+  LastName : Lana
+  DateNaiss : 06-09-1996
+  img : lanaRhoades.jpg
   userMail : max.sevot@gmail.com

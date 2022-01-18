@@ -27,22 +27,24 @@ def editAjouter():
     return render_template( 'edit/editAjouter.html' )    
 
 
-@app.route("/editModifier")
-def editModifier():
-    return render_template( 'edit/editModifier.html' )   
+# @app.route("/editModifier")
+# def editModifier():
+#     return render_template( 'edit/editModifier.html' )   
 
 
-@app.route("/edit/author/<int:id>")
+@app.route("/editModifier/<int:id>")
 def edit_author(id=None):
+    print(id)
     nom = None
     if id is None:
-        a = get_author(id)
+        a = get_sample(id)
         nom = a.name
     else :
-        a = None
+        a = ("Salut", "Mon", "Pote")
+    print(id, a, nom)
 
     f = AuthorForm(id=id, name=nom)
-    return render_template( "edit_author.html", author = a, form = f)
+    return render_template( "edit/editModifier.html", star = a, form = f)
 
 @app.route("/save/author/", methods=["POST"])
 def save_author():
@@ -50,9 +52,9 @@ def save_author():
     # si on est en update d'author
     if f.id.data != "":
         id = int(f.id.data)
-        a = get_author(id)
+        a = get_user(id)
     else : # on n'a pas d'ID ==> création d'Author
-        a = Author(name=f.name.data)
+        a = Utilisateur(userName=f.name.data)
         db.session.add(a)
     if f.validate_on_submit():
         a.name = f.name.data
@@ -62,9 +64,9 @@ def save_author():
         return redirect(url_for("one_author", id=id))
     return render_template("edit_author.html",author=a, form=f)
 
-@app.route("/")
+@app.route("/.../")
 def one_author(id):
-    auteur = get_author(id)
+    user = get_user(id)
     return render_template(
         "home.html",
-        title = "Livre de " + auteur.name, books=auteur.book)
+        title = "Livre de " + user.name, books=user.name)

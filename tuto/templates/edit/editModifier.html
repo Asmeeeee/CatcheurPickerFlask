@@ -24,6 +24,9 @@
   </nav>
   
 <h1>Edit author Modifier</h1>
+  {% for s in star %}
+    <p> {{ s }} </p>
+  {% endfor %}
 <form role="form" method="POST" action="">
     <input class="nom" type="text">
     <input class="btn btn-default" type="submit" value="Enregistrer">

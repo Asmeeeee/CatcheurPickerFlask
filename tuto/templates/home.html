@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block main %}
-<h1>Salut mon pote</h1>
+<h1>Liste des catcheurs du monde</h1>
 
 <section class="bite">
     <div class="row">
@@ -9,13 +9,13 @@
             <div class="card mb-4 shadow-sm">
                 <img class="card-img mx-auto mt-4" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
                 <div class="card-body">
-                    <a href="/editModifier"> Modifier {{ star.starPrenom }} {{ star.starNom }} </a>
+                    <a href="/editModifier/{{star.starId}}"> Modifier {{ star.starPrenom }} {{ star.starNom }} </a>
                     <p>Nom : {{ star.starNom }}</p>
                     <p>Prenom : {{ star.starPrenom }}</p>
+                    <small>Envie de te battre ?</small>
                     <a href="/" class="btn btn-primary">
-                        Se branler
+                        Combattre
                     </a>
-                    <small>Envie de te branler ?</small>
                 </div>
             </div>
         </div>

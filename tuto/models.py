@@ -31,4 +31,3 @@ class Star(db.Model):
 
     def __repr__(self):
         return "<Star (%d) %s>" % (self.starNom, self.starPrenom)
-
