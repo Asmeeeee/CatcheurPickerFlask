@@ -9,12 +9,13 @@
             <div class="card mb-4 shadow-sm">
                 <img class="card-img mx-auto mt-4" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
                 <div class="card-body">
-                    <a href="/"> Menu principale </a>
-                    <p>Nom : { star.starName }}</p>
-                    <p>Prenom : {{ star.starLastName }}</p>
+                    <a href="/editModifier"> Modifier {{ star.starPrenom }} {{ star.starNom }} </a>
+                    <p>Nom : {{ star.starNom }}</p>
+                    <p>Prenom : {{ star.starPrenom }}</p>
                     <a href="/" class="btn btn-primary">
-                        Acheter
+                        Se branler
                     </a>
+                    <small>Envie de te branler ?</small>
                 </div>
             </div>
         </div>
