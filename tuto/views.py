@@ -15,7 +15,7 @@ def home():
     return render_template(
         "home.html",
         title = "Listes de film pour se faire chier",
-        books = get_sample()
+        stars = get_sample()
     )
 
 @app.route("/editSupprimer")
@@ -62,7 +62,7 @@ def save_author():
         return redirect(url_for("one_author", id=id))
     return render_template("edit_author.html",author=a, form=f)
 
-@app.route("/author/<int:id>")
+@app.route("/")
 def one_author(id):
     auteur = get_author(id)
     return render_template(

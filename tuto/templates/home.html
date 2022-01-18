@@ -4,15 +4,15 @@
 
 <section class="bite">
     <div class="row">
-        {% for book in books %}
+        {% for star in stars %}
         <div class="col-sm-2 col-md-4 col-lg-3">
             <div class="card mb-4 shadow-sm">
-                <img class="card-img mx-auto mt-4" src="{{ url_for('static', filename='images/'+book.img) }}" alt ="{{ book.title }}"/>
+                <img class="card-img mx-auto mt-4" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
                 <div class="card-body">
-                    <a href="{{ book.url }}"> {{ book.title }}</a>
-                    <p>Auteur : {{ book.author }}</p>
-                    <p>Prix : {{ book.price }}€</p>
-                    <a href="{{ book.url }}" class="btn btn-primary">
+                    <a href="/"> Menu principale </a>
+                    <p>Nom : { star.starName }}</p>
+                    <p>Prenom : {{ star.starLastName }}</p>
+                    <a href="/" class="btn btn-primary">
                         Acheter
                     </a>
                 </div>
