@@ -27,7 +27,7 @@ class Star(db.Model):
     starDateNaiss = db.Column(db.String(100))
     starImg = db.Column(db.String(100))
     star = db.relationship("Utilisateur", backref=db.backref("star", lazy="dynamic"))
-    userId = db.Column(db.Integer, db.ForeignKey("utilisateur.userId"))
+    userMail = db.Column(db.String(100), db.ForeignKey("utilisateur.userMail"))
 
     def __repr__(self):
         return "<Star (%d) %s>" % (self.starNom, self.starPrenom)
