@@ -42,8 +42,8 @@ def loaddb(filename):
                     starDateNaiss = b["DateNaiss"],
                     starImg = b["img"],
                     starHair = b['hairColor'],
-                    starSize = b['taille'],
-                    starHeigh = b['poids'],
+                    starHeight = b['taille'],
+                    starWeight = b['poids'],
                     starOrigin = b['nationnalite'],
                     userMail = b["userMail"])
     #On ajoute l'objet o à la base
