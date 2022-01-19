@@ -6,3 +6,20 @@ nav ul li a {
     color: #E6E6E6;
 
 }
+
+
+aside{
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    border-radius: 2%;
+
+}
+
+aside > section{
+    flex-wrap: wrap;
+    margin-inline: 10%;
+    border-radius: 5%;
+    background-color: #E6E6E6;
+    border-color: orange;
+}

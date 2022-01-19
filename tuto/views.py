@@ -18,6 +18,20 @@ def home():
         stars = get_sample()
     )
 
+@app.route("/hairColor")
+def hairColor():
+    return render_template("home.html", stars = get_star_by_hair())
+
+@app.route("/Size")
+def size():
+    return render_template("home.html", stars = get_star_by_size())
+
+@app.route("/Heigh")
+def heigh():
+    return render_template("home.html", stars = get_star_by_heigh())
+
+
+
 @app.route("/editSupprimer")
 def editSupprimer():
     return render_template( 'edit/editSupprimer.html' )
