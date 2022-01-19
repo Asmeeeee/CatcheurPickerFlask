@@ -6,26 +6,36 @@
 </head>
   
 <h1>Edit author Ajouter</h1>
-<form role="form" method="POST" action="">
-  <aside>
+
+<form method="POST" class="needs-validation" novalidate >
   <section>
-  <ul>
-    <li><label for="prenom">Prénom: </label>
-    <input type="text" id="prenom" placeholder="Jewelz" name="prenom" required  
-    >
-    <label>*</label>
-  </li>
-  <br>
-  <li><label for="nom">Nom: </label>
-    <input type="text" id="nom" placeholder="Blu" name="nom" required  
-    >
-    <label>*</label>
-  </li>
-    <br>
-    <br>
-  <li>
-  <label for ="nationalite">Nationalité: </label>
-    <select name="nationalite" id="nationalite" required>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationTooltip01">Prénom</label>
+      <input type="text" class="form-control" id="validationTooltip01" placeholder="prenom" value="Jewelz" required>
+      <div class="valid-tooltip">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationTooltip02">Nom</label>
+      <input type="text" class="form-control" id="validationTooltip02" placeholder="Nom" value="Blu" required>
+      <div class="valid-tooltip">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationTooltip02">Date de naissance</label>
+      <input type="date" class="form-control" id="validationTooltip02">
+      <div class="valid-tooltip">
+        Looks good!
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip04">Nationalité</label>
+      <select name="nationalite" id="nationalite" class="form-control" id="validationTooltip04" required>
         <option value="Inconnue">Inconnue</option>
         <option value="Americain">Americain</option>
         <option value="Africaine">Africaine</option>
@@ -35,39 +45,39 @@
         <option value="Francaise">Française</option>
         <option value="Italienne">Italienne</option>
     </select>
-    </li>
-    <br>
-    <br>
-    <li><label for="illustration">Illustration: </label>
-    <input type="file"
-    name="illustration" id="illustration"></li>
-    <br>
-  </ul>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip05">Illustration</label>
+      <input type="FILE" class="form-control" id="validationTooltip05">
+      <div class="invalid-tooltip">
+        Please provide a valid zip.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip05">Taille</label>
+      <input type="double" class="form-control" id="validationTooltip05" placehold= "1,60">
+      <div class="invalid-tooltip">
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip05">Poid</label>
+      <input type="double" class="form-control" id="validationTooltip05" placehold= "60">
+      <div class="invalid-tooltip">
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip04">Couleur de cheveux</label>
+      <select name="hair_color" id="hair_color" class="form-control" id="validationTooltip04" required>
+        <option value="Blonde">Blonde</option>
+        <option value="Brune">Brune</option>
+        <option value="Rousse">Rousse</option>
+        <option value="Noir">Noir</option>
+        <option value="Chauve">Chauve</option>
+        <option value="Fantaisie">Fantaisie</option>
+    </select>
+    </div>
+  </div>
 </section>
-<section>
-  <ul>
-    <li><label for="taille">Taille: </label>
-    <input type="double" id="taille" name="taille" 
-    >
-  </li>
-  <br>
-  <li><label for="poid">Poid: </label>
-    <input type="double" id="nom"  name="poid" 
-    >
-  </li>
-    <br>
-  <li>
-  <label for ="nationalite">Nationalité: </label>
-    </li>
-    <br>
-    <li><label for="hair_color">Couleur de cheveux: </label>
-      <input type="double" id="hair_color"  name="hair_color" 
-      >
-    </li>
-    <br>
-  </ul>
-</section>
-<input class="btn btn-default" type="submit" value="Enregistrer">
-</aside>
+  <button class="btn btn-primary" type="submit">Submit form</button>
 </form>
 {% endblock %}
