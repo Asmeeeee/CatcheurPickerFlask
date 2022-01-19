@@ -44,7 +44,7 @@ def loaddb(filename):
                     starHair = b['hairColor'],
                     starSize = b['taille'],
                     starHeigh = b['poids'],
-                    starHair = b['hairColor'],
+                    starOrigin = b['nationnalite'],
                     userMail = b["userMail"])
     #On ajoute l'objet o à la base
         db.session.add(diva)

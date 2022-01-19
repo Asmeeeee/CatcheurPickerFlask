@@ -7,6 +7,15 @@ def get_sample():
 def get_star_detail(starid):
     return Star.get(starid)
 
+def get_star_by_hair():
+    return Star.query.order_by(Star.starHair).all()
+
+def get_star_by_size():
+    return Star.query.order_by(Star.starSize).all()
+
+def get_star_by_heigh():
+    return Star.query.order_by(Star.starHeigh).all()
+
 def get_user(id):
     return Utilisateur.query.get_or_404(id)
 

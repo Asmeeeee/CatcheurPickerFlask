@@ -2,7 +2,7 @@
 {% block main %}
 <h1>Liste des catcheurs du monde</h1>
 
-<section class="bite">
+<section class="tuile">
     <div class="row">
         {% for star in stars %}
         <div class="col-sm-2 col-md-4 col-lg-3">
@@ -12,6 +12,11 @@
                     <a href="/editModifier/{{star.starId}}"> Modifier {{ star.starPrenom }} {{ star.starNom }} </a>
                     <p>Nom : {{ star.starNom }}</p>
                     <p>Prenom : {{ star.starPrenom }}</p>
+                    <p>Date de naissance : {{ star.starDateNaiss }}</p>
+                    <p>Couleur de cheveux : {{ star.starHair }}</p>
+                    <p>Taille (en m) : {{ star.starSize }}</p>
+                    <p>Poids (en kg) : {{ star.starHeigh }}</p>
+                    <p>Nationnalité : {{ star.starOrigin }}</p>
                     <small>Envie de te battre ?</small>
                     <a href="/" class="btn btn-primary">
                         Combattre
