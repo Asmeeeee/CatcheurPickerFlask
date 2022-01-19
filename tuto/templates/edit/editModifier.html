@@ -1,16 +1,83 @@
 {% extends "base.html" %}
 {% block main %}
 <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../../static/edit/editAjouter.css">
-  </head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../static/edit/editAjouter.css">
+</head>
   
-<h1>Edit author Modifier</h1>
-  {% for s in star %}
-    <p> {{ s }} </p>
-  {% endfor %}
-<form role="form" method="POST" action="">
-    <input class="nom" type="text">
-    <input class="btn btn-default" type="submit" value="Enregistrer">
+<h1>Edit author Ajouter</h1>
+
+<form method="POST" class="needs-validation" novalidate >
+  <section>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationTooltip01">Prénom</label>
+      <input type="text" class="form-control" id="validationTooltip01" placeholder="prenom" value="" required>
+      <div class="valid-tooltip">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationTooltip02">Nom</label>
+      <input type="text" class="form-control" id="validationTooltip02" placeholder="Nom" value="" required>
+      <div class="valid-tooltip">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationTooltip02">Date de naissance</label>
+      <input type="date" class="form-control" id="validationTooltip02">
+      <div class="valid-tooltip">
+        Looks good!
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip04">Nationalité</label>
+      <select name="nationalite" id="nationalite" class="form-control" id="validationTooltip04" required>
+        <option value="Inconnue">Inconnue</option>
+        <option value="Americain">Americain</option>
+        <option value="Africaine">Africaine</option>
+        <option value="Asiatique">Asiatique</option>
+        <option value="Mexicain">Mexicain</option>
+        <option value="Russe">Russe</option>
+        <option value="Francaise">Française</option>
+        <option value="Italienne">Italienne</option>
+    </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip05">Illustration</label>
+      <input type="FILE" class="form-control" id="validationTooltip05">
+      <div class="invalid-tooltip">
+        Please provide a valid zip.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip05">Taille</label>
+      <input type="double" class="form-control" id="validationTooltip05" placehold= "1,60">
+      <div class="invalid-tooltip">
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip05">Poid</label>
+      <input type="double" class="form-control" id="validationTooltip05" placehold= "60">
+      <div class="invalid-tooltip">
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip04">Couleur de cheveux</label>
+      <select name="hair_color" id="hair_color" class="form-control" id="validationTooltip04" required>
+        <option value="Blonde">Blonde</option>
+        <option value="Brune">Brune</option>
+        <option value="Rousse">Rousse</option>
+        <option value="Noir">Noir</option>
+        <option value="Chauve">Chauve</option>
+        <option value="Fantaisie">Fantaisie</option>
+    </select>
+    </div>
+  </div>
+</section>
+  <button class="btn btn-primary" type="submit">Submit form</button>
 </form>
 {% endblock %}
