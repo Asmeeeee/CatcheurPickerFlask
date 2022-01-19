@@ -18,9 +18,9 @@ def home():
         stars = get_sample()
     )
 
-@app.route("/hairColor")
-def hairColor():
-    return render_template("home.html", stars = get_star_by_hair())
+@app.route("/hairColor/<string:couleur>")
+def hairColor(couleur):
+    return render_template("home.html", stars = get_star_by_hair(couleur))
 
 @app.route("/Size")
 def size():
@@ -30,6 +30,9 @@ def size():
 def heigh():
     return render_template("home.html", stars = get_star_by_heigh())
 
+@app.route("/Origin/<string:origin>")
+def origin(origin):
+    return render_template("home.html", stars = get_star_by_origin(origin))
 
 
 @app.route("/editSupprimer")
