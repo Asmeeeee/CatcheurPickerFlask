@@ -19,6 +19,9 @@ def get_star_by_heigh():
 def get_star_by_origin(nationnalite="Americain"):
     return Star.query.filter(Star.starOrigin == nationnalite).all()
 
+def get_safe_mode():
+    return Star.query.filter(Star.starId == 1).all()
+
 def get_user(id):
     return Utilisateur.query.get_or_404(id)
 

@@ -1,5 +1,5 @@
-- Name : Dwayne
-  LastName : Johnson
+- Name : Johnson
+  LastName : Dwayne
   DateNaiss : 02-05-1972
   img : theRock.jpg
   hairColor : chauve
@@ -7,8 +7,8 @@
   poids : 118
   nationnalite : Américain
   userMail : max.sevot@gmail.com
-- Name : Cena
-  LastName : John
+- Name : John
+  LastName : Cena
   DateNaiss : 23-04-1977
   img : johnCena.jpg
   hairColor : brun
@@ -16,8 +16,8 @@
   poids : 110
   nationnalite : Américain
   userMail : max.sevot@gmail.com
-- Name : Lee
-  LastName : AJ
+- Name : AJ
+  LastName : Lee
   DateNaiss : 19-03-1987
   img : ajLee.jpg
   hairColor : noir
@@ -79,8 +79,8 @@
   poids : 49
   nationnalite : Américain
   userMail : max.sevot@gmail.com
-- Name : Kush
-  LastName : Katie
+- Name : Katie
+  LastName : Kush
   DateNaiss : 21-04-1997
   img : katieKush.jpg
   hairColor : blonde
@@ -88,8 +88,8 @@
   poids : 55
   nationnalite : Américain
   userMail : max.sevot@gmail.com
-- Name : Polina
-  LastName : Anna
+- Name : Anna
+  LastName : Polina
   DateNaiss : 11-09-1989
   img : annaPolina.jpg
   hairColor : noir
@@ -97,8 +97,8 @@
   poids : 52
   nationnalite : Française
   userMail : max.sevot@gmail.com
-- Name : Texas
-  LastName : Alexis
+- Name : Alexis
+  LastName : Texas
   DateNaiss : 25-05-1985
   img : alexisTexas.jpg
   hairColor : blonde
@@ -106,8 +106,8 @@
   poids : 64
   nationnalite : Américain
   userMail : max.sevot@gmail.com
-- Name : Rhoades
-  LastName : Lana
+- Name : Lana
+  LastName : Rhoades
   DateNaiss : 06-09-1996
   img : lanaRhoades.jpg
   hairColor : brun
@@ -115,8 +115,8 @@
   poids : 52
   nationnalite : Américain
   userMail : max.sevot@gmail.com
-- Name : Lore
-  LastName : Lexi
+- Name : Lexi
+  LastName : Lore
   DateNaiss : 06-09-1996
   img : lexiLore.jpg
   hairColor : blonde

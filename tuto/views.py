@@ -34,6 +34,10 @@ def heigh():
 def origin(origin):
     return render_template("home.html", stars = get_star_by_origin(origin))
 
+@app.route("/Safe")
+def safe():
+    return render_template("home.html", stars = get_safe_mode())
+
 
 @app.route("/editSupprimer")
 def editSupprimer():
