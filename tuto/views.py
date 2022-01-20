@@ -69,8 +69,10 @@ def editSupprimer():
 @app.route("/editAjouter", methods=['GET', 'POST'])
 def editAjouter():
     form = CreateStar()
+    nb = get_lastId()
+    print(nb)
     if form.submit.data:
-        star = Star(starId=20,#id,
+        star = Star(starId=nb+1,
                     starNom=form.nom.data, 
                     starPrenom=form.prenom.data, 
                     starDateNaiss=form.dateNaiss.data, 
@@ -82,7 +84,6 @@ def editAjouter():
                     userMail="max.sevot@gmail.com")
         db.session.add(star)
         db.session.commit()
-        print("Je suis entrée")
         flash('Merci pour votre Star')
         return redirect("/editAjouter")
     return render_template( '/edit/editAjouter.html', form=form )

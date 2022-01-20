@@ -1,3 +1,4 @@
+from datetime import datetime
 import yaml, os.path
 from .app import app, db
 
@@ -21,6 +22,9 @@ def get_star_by_origin(nationnalite="Americain"):
 
 def get_safe_mode():
     return Star.query.filter(Star.starId == 1).all()
+
+def get_lastId():
+    return Star.query.filter(Star.starId).count()
 
 def get_user(id):
     return Utilisateur.query.get_or_404(id)
