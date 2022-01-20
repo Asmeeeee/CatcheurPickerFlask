@@ -11,25 +11,25 @@ class CreateStar(FlaskForm):
     nom = StringField('Nom', validators =[validators.InputRequired()])
     dateNaiss = DateField('Date de naissance')
     origin = SelectField('Nationnalité', [DataRequired()], choices =[
-                                                                    ('inconnu', 'Inconnu'),
-                                                                    ('fra', 'Française'),
-                                                                    ('usa', 'Américaine'),
-                                                                    ('afr', 'Africaine'),
-                                                                    ('asi', 'Asiatique'),
-                                                                    ('mex', 'Mexicaine'),
-                                                                    ('rus', 'Russe'),
-                                                                    ('ita', 'Italienne')
+                                                                    ('Inconnu', 'Inconnu'),
+                                                                    ('Française', 'Française'),
+                                                                    ('Américaine', 'Américaine'),
+                                                                    ('Africaine', 'Africaine'),
+                                                                    ('Asiatique', 'Asiatique'),
+                                                                    ('Mexicaine', 'Mexicaine'),
+                                                                    ('Russe', 'Russe'),
+                                                                    ('Italienne', 'Italienne')
                                                                     ])
     img = FileField('Image')
     height = StringField('Taille', validators =[validators.InputRequired()])
     weight = StringField('Poids', validators =[validators.InputRequired()])
     hairColor = SelectField('Couleur de cheveux', [DataRequired()], choices =[
-                                                                             ('blo', 'Blonde'),
-                                                                             ('bru', 'Brune'),
-                                                                             ('rou', 'Rousse'),
-                                                                             ('noi', 'Noir'),
-                                                                             ('cha', 'Chauve'),
-                                                                             ('fan', 'Fantaisie')
+                                                                             ('Blond', 'Blonde'),
+                                                                             ('Brun', 'Brune'),
+                                                                             ('Roux', 'Rousse'),
+                                                                             ('Noir', 'Noir'),
+                                                                             ('Chauve', 'Chauve'),
+                                                                             ('Fantaisie', 'Fantaisie')
                                                                              ])
     submit = SubmitField('Ajouter')
 
@@ -37,7 +37,7 @@ class CreateStar(FlaskForm):
 def home():
     return render_template(
         "home.html",
-        title = "Listes de film pour se faire chier",
+        title = "Liste des catcheur(ses)",
         stars = get_sample()
     )
 
@@ -70,25 +70,31 @@ def editSupprimer():
 def editAjouter():
     form = CreateStar()
     nb = get_lastId()
-    print(nb)
+    if form.img.data == "":
+        img = "none.png"
+    else :
+        img = form.img.data
     if form.submit.data:
-        star = Star(starId=nb+1,
-                    starNom=form.nom.data, 
-                    starPrenom=form.prenom.data, 
-                    starDateNaiss=form.dateNaiss.data, 
-                    starImg=form.img.data, 
-                    starHair=form.hairColor.data, 
-                    starHeight=form.height.data, 
-                    starWeight=form.weight.data, 
-                    starOrigin=form.origin.data, 
-                    userMail="max.sevot@gmail.com")
-        db.session.add(star)
-        db.session.commit()
+        try:
+            star = Star(starId=nb,
+                        starNom=form.nom.data, 
+                        starPrenom=form.prenom.data, 
+                        starDateNaiss=form.dateNaiss.data, 
+                        starImg=img, 
+                        starHair=form.hairColor.data, 
+                        starHeight=form.height.data, 
+                        starWeight=form.weight.data, 
+                        starOrigin=form.origin.data, 
+                        userMail="max.sevot@gmail.com")
+            db.session.add(star)
+            db.session.commit()
+        except:
+            print("Erreur lors de l'insertion")
         flash('Merci pour votre Star')
         return redirect("/editAjouter")
     return render_template( '/edit/editAjouter.html', form=form )
 
-@app.route("/editAjouter/<int:id>")
+@app.route("/editModifier/<int:id>")
 def addStar(id=None):
     nom = None
     if id is None:
@@ -98,7 +104,7 @@ def addStar(id=None):
         a = ("Salut", "Mon", "Pote")
     print(id, a, nom)
 
-    f = AuthorForm(id=id, name=nom)
+    f = CreateStar(id=id, name=nom)
     return render_template( "edit/editModifier.html", star = a, form = f)
 
 @app.route("/save/author/", methods=["POST"])

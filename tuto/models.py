@@ -1,4 +1,6 @@
 from datetime import datetime
+from email.policy import default
+from sqlalchemy import func
 import yaml, os.path
 from .app import app, db
 
@@ -24,7 +26,8 @@ def get_safe_mode():
     return Star.query.filter(Star.starId == 1).all()
 
 def get_lastId():
-    return Star.query.filter(Star.starId).count()
+    max_id = db.session.query(func.max(Star.starId)).scalar()
+    return max_id + 1 
 
 def get_user(id):
     return Utilisateur.query.get_or_404(id)
@@ -43,8 +46,8 @@ class Star(db.Model):
     starId = db.Column(db.Integer, primary_key=True)
     starNom = db.Column(db.String(100))
     starPrenom = db.Column(db.String(100))
-    starDateNaiss = db.Column(db.String(100))
-    starImg = db.Column(db.String(100))
+    starDateNaiss = db.Column(db.String(100), default="01-01-2000")
+    starImg = db.Column(db.String(100), default="none.png")
     starHair = db.Column(db.String(100))
     starHeight = db.Column(db.Integer)
     starWeight = db.Column(db.Integer)
