@@ -1,14 +1,37 @@
 from .app import app, db
-from flask import render_template, redirect, url_for
+from flask import flash, render_template, redirect, url_for
 from .models import *
 from flask_wtf import FlaskForm
-from wtforms import StringField, HiddenField, validators
-#from wtforms.validators import DataRequired, validators
+from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField, FileField
+from wtforms.validators import DataRequired
 
-class AuthorForm(FlaskForm):
+class CreateStar(FlaskForm):
     id = HiddenField('id')
-    #name = StringField('Nom', [validators.InputRequired(), validators.Lenght(min=2, max=25, message = "Le nom doit avoir entre 2 et 25 caractères mon pote !", validators.Regexp('a-zA-Z]+$', message = "Le nom doit avoir entre 2 et 25 caractères mon pote !"))])
-    name = StringField('Nom', validators =[validators.InputRequired()])
+    prenom = StringField('Prénom', validators =[validators.InputRequired()])
+    nom = StringField('Nom', validators =[validators.InputRequired()])
+    dateNaiss = DateField('Date de naissance')
+    origin = SelectField('Nationnalité', [DataRequired()], choices =[
+                                                                    ('inconnu', 'Inconnu'),
+                                                                    ('fra', 'Française'),
+                                                                    ('usa', 'Américaine'),
+                                                                    ('afr', 'Africaine'),
+                                                                    ('asi', 'Asiatique'),
+                                                                    ('mex', 'Mexicaine'),
+                                                                    ('rus', 'Russe'),
+                                                                    ('ita', 'Italienne')
+                                                                    ])
+    img = FileField('Image')
+    height = StringField('Taille', validators =[validators.InputRequired()])
+    weight = StringField('Poids', validators =[validators.InputRequired()])
+    hairColor = SelectField('Couleur de cheveux', [DataRequired()], choices =[
+                                                                             ('blo', 'Blonde'),
+                                                                             ('bru', 'Brune'),
+                                                                             ('rou', 'Rousse'),
+                                                                             ('noi', 'Noir'),
+                                                                             ('cha', 'Chauve'),
+                                                                             ('fan', 'Fantaisie')
+                                                                             ])
+    submit = SubmitField('Ajouter')
 
 @app.route("/")
 def home():
@@ -22,13 +45,13 @@ def home():
 def hairColor(couleur):
     return render_template("home.html", stars = get_star_by_hair(couleur))
 
-@app.route("/Size")
-def size():
-    return render_template("home.html", stars = get_star_by_size())
+@app.route("/Height")
+def height():
+    return render_template("home.html", stars = get_star_by_height())
 
-@app.route("/Heigh")
-def heigh():
-    return render_template("home.html", stars = get_star_by_heigh())
+@app.route("/Weight")
+def weight():
+    return render_template("home.html", stars = get_star_by_weight())
 
 @app.route("/Origin/<string:origin>")
 def origin(origin):
@@ -43,19 +66,29 @@ def safe():
 def editSupprimer():
     return render_template( 'edit/editSupprimer.html' )
 
-@app.route("/editAjouter")
+@app.route("/editAjouter", methods=['GET', 'POST'])
 def editAjouter():
-    return render_template( 'edit/editAjouter.html' )    
+    form = CreateStar()
+    if form.submit.data:
+        star = Star(starId=20,#id,
+                    starNom=form.nom.data, 
+                    starPrenom=form.prenom.data, 
+                    starDateNaiss=form.dateNaiss.data, 
+                    starImg=form.img.data, 
+                    starHair=form.hairColor.data, 
+                    starHeight=form.height.data, 
+                    starWeight=form.weight.data, 
+                    starOrigin=form.origin.data, 
+                    userMail="max.sevot@gmail.com")
+        db.session.add(star)
+        db.session.commit()
+        print("Je suis entrée")
+        flash('Merci pour votre Star')
+        return redirect("/editAjouter")
+    return render_template( '/edit/editAjouter.html', form=form )
 
-
-# @app.route("/editModifier")
-# def editModifier():
-#     return render_template( 'edit/editModifier.html' )   
-
-
-@app.route("/editModifier/<int:id>")
-def edit_author(id=None):
-    print(id)
+@app.route("/editAjouter/<int:id>")
+def addStar(id=None):
     nom = None
     if id is None:
         a = get_sample(id)

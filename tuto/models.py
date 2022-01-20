@@ -10,11 +10,11 @@ def get_star_detail(starid):
 def get_star_by_hair(couleur):
     return Star.query.filter(Star.starHair == couleur).all()
 
-def get_star_by_size():
-    return Star.query.order_by(Star.starSize).all()
+def get_star_by_height():
+    return Star.query.order_by(Star.starHeight).all()
 
-def get_star_by_heigh():
-    return Star.query.order_by(Star.starHeigh).all()
+def get_star_by_weight():
+    return Star.query.order_by(Star.starWeight).all()
 
 def get_star_by_origin(nationnalite="Americain"):
     return Star.query.filter(Star.starOrigin == nationnalite).all()
@@ -42,8 +42,8 @@ class Star(db.Model):
     starDateNaiss = db.Column(db.String(100))
     starImg = db.Column(db.String(100))
     starHair = db.Column(db.String(100))
-    starSize = db.Column(db.Integer)
-    starHeigh = db.Column(db.Integer)
+    starHeight = db.Column(db.Integer)
+    starWeight = db.Column(db.Integer)
     starOrigin = db.Column(db.String(100))
     star = db.relationship("Utilisateur", backref=db.backref("star", lazy="dynamic"))
     userMail = db.Column(db.String(100), db.ForeignKey("utilisateur.userMail"))
