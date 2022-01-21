@@ -1,4 +1,6 @@
 from datetime import datetime
+from email.policy import default
+from sqlalchemy import func
 import yaml, os.path
 from .app import app, db
 
@@ -6,7 +8,7 @@ def get_sample():
     return Star.query.limit(150).all()
 
 def get_star_detail(starid):
-    return Star.get(starid)
+    return Star.query.get_or_404(starid)
 
 def get_star_by_hair(couleur):
     return Star.query.filter(Star.starHair == couleur).all()
@@ -21,13 +23,14 @@ def get_star_by_origin(nationnalite="Americain"):
     return Star.query.filter(Star.starOrigin == nationnalite).all()
 
 def get_safe_mode():
-    return Star.query.filter(Star.starId == 1).all()
+    return Star.query.get_or_404(Star.starId == 1).all()
 
-def get_lastId():
-    return Star.query.filter(Star.starId).count()
+# def get_lastId():
+#     max_id = db.session.query(func.max(Star.starId)).scalar()
+#     return max_id + 1 
 
-def get_user(id):
-    return Utilisateur.query.get_or_404(id)
+def get_star(id):
+    return Star.query.filter(Star.starId == id)
 
 class Utilisateur(db.Model):
     userId = db.Column(db.Integer, primary_key=True)
@@ -40,11 +43,11 @@ class Utilisateur(db.Model):
         return "<Utilisateur (%d) %s>" % (self.userName, self.userLastName)
 
 class Star(db.Model):
-    starId = db.Column(db.Integer, primary_key=True)
+    starId = db.Column(db.Integer, primary_key=True, autoincrement=True)
     starNom = db.Column(db.String(100))
     starPrenom = db.Column(db.String(100))
-    starDateNaiss = db.Column(db.String(100))
-    starImg = db.Column(db.String(100))
+    starDateNaiss = db.Column(db.String(100), default="01-01-2000")
+    starImg = db.Column(db.String(100), default="none.png")
     starHair = db.Column(db.String(100))
     starHeight = db.Column(db.Integer)
     starWeight = db.Column(db.Integer)
@@ -53,4 +56,4 @@ class Star(db.Model):
     userMail = db.Column(db.String(100), db.ForeignKey("utilisateur.userMail"))
 
     def __repr__(self):
-        return "<Star (%d) %s>" % (self.starNom, self.starPrenom)
+        return "%d %s %s %s %s %s %s %s %s" % (self.starId, self.starNom, self.starPrenom, self.starDateNaiss, self.starImg, self.starHair, self.starHeight, self.starWeight, self.starOrigin)
