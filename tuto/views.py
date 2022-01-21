@@ -32,7 +32,7 @@ class CreateStar(FlaskForm):
                                                                              ('Chauve', 'Chauve'),
                                                                              ('Fantaisie', 'Fantaisie')
                                                                              ])
-    submit = SubmitField('Ajouter')
+    submit = SubmitField("Save")
 
 @app.route("/")
 def home():
@@ -95,11 +95,12 @@ def editAjouter():
         return redirect("/editAjouter")
     return render_template( '/edit/editAjouter.html', form=form )
 
-@app.route("/editModifier/<int:id>")
+@app.route("/editModifier/<int:id>", methods=['GET', 'POST'])
 def editStar(id):
     a = get_star_detail(id)
-    f = CreateStar(id=id, prenom=a.starPrenom, nom=a.starNom, img=a.starImg, height=a.starHeight)
-    return render_template( "edit/editModifier.html", star = a, form = f)
+    f = CreateStar(id=id, prenom=a.starPrenom, nom=a.starNom, img=a.starImg, height=a.starHeight, weight=a.starWeight, hairColor=a.starHair, origin=a.starOrigin, dateNaiss=a.starDateNaiss)
+    print(id)
+    return render_template( "edit/editModifier.html", star = a, form = f, id=id)
 
 @app.route("/save/author/", methods=["POST"])
 def save_author():

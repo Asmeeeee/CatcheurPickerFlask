@@ -46,7 +46,7 @@ class Star(db.Model):
     starId = db.Column(db.Integer, primary_key=True, autoincrement=True)
     starNom = db.Column(db.String(100))
     starPrenom = db.Column(db.String(100))
-    starDateNaiss = db.Column(db.String(100), default="01-01-2000")
+    starDateNaiss = db.Column(db.Date)
     starImg = db.Column(db.String(100), default="none.png")
     starHair = db.Column(db.String(100))
     starHeight = db.Column(db.Integer)
