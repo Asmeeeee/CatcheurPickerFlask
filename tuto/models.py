@@ -23,7 +23,7 @@ def get_star_by_origin(nationnalite="Americain"):
     return Star.query.filter(Star.starOrigin == nationnalite).all()
 
 def get_safe_mode():
-    return Star.query.get_or_404(Star.starId == 1).all()
+    return Star.query.filter(Star.starId == 1)
 
 # def get_lastId():
 #     max_id = db.session.query(func.max(Star.starId)).scalar()

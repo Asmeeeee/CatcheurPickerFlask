@@ -60,6 +60,7 @@ def origin(origin):
 
 @app.route("/Safe")
 def safe():
+    print("hello")
     return render_template("home.html", stars = get_safe_mode())
 
 
