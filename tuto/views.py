@@ -12,13 +12,13 @@ class CreateStar(FlaskForm):
     dateNaiss = DateField('Date de naissance')
     origin = SelectField('Nationnalité', [DataRequired()], choices =[
                                                                     ('inconnu', 'Inconnu'),
-                                                                    ('fra', 'Française'),
-                                                                    ('usa', 'Américaine'),
-                                                                    ('afr', 'Africaine'),
-                                                                    ('asi', 'Asiatique'),
-                                                                    ('mex', 'Mexicaine'),
-                                                                    ('rus', 'Russe'),
-                                                                    ('ita', 'Italienne')
+                                                                    ('francaise', 'Française'),
+                                                                    ('americaine', 'Américaine'),
+                                                                    ('africaine', 'Africaine'),
+                                                                    ('asiatique', 'Asiatique'),
+                                                                    ('mexicaine', 'Mexicaine'),
+                                                                    ('russe', 'Russe'),
+                                                                    ('italique', 'Italienne')
                                                                     ])
     img = FileField('Image')
     height = StringField('Taille', validators =[validators.InputRequired()])
