@@ -1,3 +1,4 @@
+from time import strftime
 from .app import app, db
 from flask import flash, render_template, redirect, url_for
 from .models import *
@@ -69,14 +70,13 @@ def editSupprimer():
 @app.route("/editAjouter", methods=['GET', 'POST'])
 def editAjouter():
     form = CreateStar()
-    nb = get_lastId()
     if form.img.data == "":
         img = "none.png"
     else :
         img = form.img.data
     if form.submit.data:
         try:
-            star = Star(starId=nb,
+            star = Star(
                         starNom=form.nom.data, 
                         starPrenom=form.prenom.data, 
                         starDateNaiss=form.dateNaiss.data, 
@@ -95,16 +95,9 @@ def editAjouter():
     return render_template( '/edit/editAjouter.html', form=form )
 
 @app.route("/editModifier/<int:id>")
-def addStar(id=None):
-    nom = None
-    if id is None:
-        a = get_sample(id)
-        nom = a.name
-    else :
-        a = ("Salut", "Mon", "Pote")
-    print(id, a, nom)
-
-    f = CreateStar(id=id, name=nom)
+def editStar(id):
+    a = get_star_detail(id)
+    f = CreateStar(id=id, prenom=a.starPrenom, nom=a.starNom, img=a.starImg, height=a.starHeight)
     return render_template( "edit/editModifier.html", star = a, form = f)
 
 @app.route("/save/author/", methods=["POST"])
@@ -113,7 +106,7 @@ def save_author():
     # si on est en update d'author
     if f.id.data != "":
         id = int(f.id.data)
-        a = get_user(id)
+        a = get_star(id)
     else : # on n'a pas d'ID ==> création d'Author
         a = Utilisateur(userName=f.name.data)
         db.session.add(a)
