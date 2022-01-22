@@ -108,6 +108,21 @@ def editStar(id):
         db.session.commit()
         flash("Vous avez supprimé le catcheur")
         return redirect("/")
+    if f.img.data == "":
+        imgEdit = a.starImg
+    else :
+        imgEdit = f.img.data
+    
+    if f.submit.data:
+        Star.query.filter(Star.starId == id).update({"starNom": f.nom.data,
+                                                     "starPrenom": f.prenom.data, 
+                                                     "starDateNaiss": f.dateNaiss.data, 
+                                                     "starImg": imgEdit, 
+                                                     "starHair": f.hairColor.data,
+                                                     "starHeight": f.height.data,
+                                                     "starWeight": f.weight.data,
+                                                     "starOrigin": f.origin.data})
+        db.session.commit()
     return render_template("edit/editModifier.html", star = a, formEdit = f, id=id)
 
 @app.route("/save/author/", methods=["POST"])
