@@ -33,7 +33,8 @@ def get_star(id):
     return Star.query.filter(Star.starId == id)
 
 class Utilisateur(db.Model):
-    userId = db.Column(db.Integer, primary_key=True)
+    __tablename__='utilisateur'
+    userId = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userName = db.Column(db.String(100))
     userLastName = db.Column(db.String(100))
     userMail = db.Column(db.String(100))
@@ -43,6 +44,7 @@ class Utilisateur(db.Model):
         return "<Utilisateur (%d) %s>" % (self.userName, self.userLastName)
 
 class Star(db.Model):
+    __tablename__='star'
     starId = db.Column(db.Integer, primary_key=True, autoincrement=True)
     starNom = db.Column(db.String(100))
     starPrenom = db.Column(db.String(100))
@@ -52,8 +54,8 @@ class Star(db.Model):
     starHeight = db.Column(db.Integer)
     starWeight = db.Column(db.Integer)
     starOrigin = db.Column(db.String(100))
-    star = db.relationship("Utilisateur", backref=db.backref("star", lazy="dynamic"))
-    userMail = db.Column(db.String(100), db.ForeignKey("utilisateur.userMail"))
+    starUserId = db.Column(db.Integer, db.ForeignKey("utilisateur.userId"))
+    utilisateur = db.relationship("Utilisateur", backref=db.backref("utilisateur", lazy="dynamic"))
 
     def __repr__(self):
         return "%d %s %s %s %s %s %s %s %s" % (self.starId, self.starNom, self.starPrenom, self.starDateNaiss, self.starImg, self.starHair, self.starHeight, self.starWeight, self.starOrigin)

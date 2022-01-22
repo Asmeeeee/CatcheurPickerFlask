@@ -16,14 +16,13 @@
           <a class="nav-link" href="/Weight">Poids</a>
         </li>
         <li class="nav-item dropdown">
-          <select  class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <option value="Brune">Brune</option>
-            <option value="Blonde">Blonde</option>
-            <option value="Noir">Noir</option>
-            <option value="Rousse">Rousse</option>
-            <option value="Chauve">Chauve</option>
-            <option value="Fantaisie">Fantaisie</option>
-        </select>
+         <form method="POST" class="form-inline my-2 my-lg-0", action="{{ url_for('hairColor', couleur='blue')}}">
+          <fieldset class="oui">
+            {{ form.color.label }}
+            {{ form.color }}
+            {{ form.submit }}
+          </fieldset>
+        </form>
         <a class="nav-link dropdown-toggle" href="/hairColor/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Appliquer
         </a>
