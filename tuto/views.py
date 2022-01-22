@@ -1,6 +1,6 @@
 from time import strftime
 from .app import app, db
-from flask import flash, render_template, redirect, url_for
+from flask import flash, render_template, redirect, session, url_for
 from .models import *
 from flask_wtf import FlaskForm
 from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField, FileField
@@ -33,6 +33,8 @@ class CreateStar(FlaskForm):
                                                                              ('Fantaisie', 'Fantaisie')
                                                                              ])
     submit = SubmitField("Save")
+    submitRemove = SubmitField("Remove")
+
 
 @app.route("/")
 def home():
@@ -95,12 +97,33 @@ def editAjouter():
         return redirect("/editAjouter")
     return render_template( '/edit/editAjouter.html', form=form )
 
+
+
 @app.route("/editModifier/<int:id>", methods=['GET', 'POST'])
 def editStar(id):
     a = get_star_detail(id)
     f = CreateStar(id=id, prenom=a.starPrenom, nom=a.starNom, img=a.starImg, height=a.starHeight, weight=a.starWeight, hairColor=a.starHair, origin=a.starOrigin, dateNaiss=a.starDateNaiss)
-    print(id)
-    return render_template( "edit/editModifier.html", star = a, form = f, id=id)
+    if f.submitRemove.data:
+        db.session.delete(a)
+        db.session.commit()
+        flash("Vous avez supprimé le catcheur")
+        return redirect("/")
+    if f.img.data == "":
+        imgEdit = a.starImg
+    else :
+        imgEdit = f.img.data
+    
+    if f.submit.data:
+        Star.query.filter(Star.starId == id).update({"starNom": f.nom.data,
+                                                     "starPrenom": f.prenom.data, 
+                                                     "starDateNaiss": f.dateNaiss.data, 
+                                                     "starImg": imgEdit, 
+                                                     "starHair": f.hairColor.data,
+                                                     "starHeight": f.height.data,
+                                                     "starWeight": f.weight.data,
+                                                     "starOrigin": f.origin.data})
+        db.session.commit()
+    return render_template("edit/editModifier.html", star = a, formEdit = f, id=id)
 
 @app.route("/save/author/", methods=["POST"])
 def save_author():
