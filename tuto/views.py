@@ -12,28 +12,33 @@ class CreateStar(FlaskForm):
     nom = StringField('Nom', validators =[validators.InputRequired()])
     dateNaiss = DateField('Date de naissance')
     origin = SelectField('Nationnalité', [DataRequired()], choices =[
-                                                                    ('Inconnu', 'Inconnu'),
-                                                                    ('Française', 'Française'),
-                                                                    ('Américaine', 'Américaine'),
-                                                                    ('Africaine', 'Africaine'),
-                                                                    ('Asiatique', 'Asiatique'),
-                                                                    ('Mexicaine', 'Mexicaine'),
-                                                                    ('Russe', 'Russe'),
-                                                                    ('Italienne', 'Italienne')
+                                                                    ('inconnu', 'Inconnu'),
+                                                                    ('francaise', 'Française'),
+                                                                    ('americaine', 'Américaine'),
+                                                                    ('africaine', 'Africaine'),
+                                                                    ('asiatique', 'Asiatique'),
+                                                                    ('mexicaine', 'Mexicaine'),
+                                                                    ('russe', 'Russe'),
+                                                                    ('italienne', 'Italienne')
                                                                     ])
     img = FileField('Image')
     height = StringField('Taille', validators =[validators.InputRequired()])
     weight = StringField('Poids', validators =[validators.InputRequired()])
     hairColor = SelectField('Couleur de cheveux', [DataRequired()], choices =[
-                                                                             ('Blond', 'Blonde'),
-                                                                             ('Brun', 'Brune'),
-                                                                             ('Roux', 'Rousse'),
-                                                                             ('Noir', 'Noir'),
-                                                                             ('Chauve', 'Chauve'),
-                                                                             ('Fantaisie', 'Fantaisie')
+                                                                             ('blond', 'Blond'),
+                                                                             ('brun', 'Brun'),
+                                                                             ('roux', 'Roux'),
+                                                                             ('noir', 'Noir'),
+                                                                             ('chauve', 'Chauve'),
+                                                                             ('fantaisie', 'Fantaisie')
                                                                              ])
     submit = SubmitField("Save")
     submitRemove = SubmitField("Remove")
+
+class FilterByHair(FlaskForm):
+    color= CreateStar.hairColor
+    submit = SubmitField('Trier par')
+
 
 
 @app.route("/")
@@ -41,12 +46,13 @@ def home():
     return render_template(
         "home.html",
         title = "Liste des catcheur(ses)",
-        stars = get_sample()
+        stars = get_sample(), form=FilterByHair()
     )
 
-@app.route("/hairColor/<string:couleur>")
+@app.route("/hairColor/<string:couleur>", methods=['GET', 'POST'])
 def hairColor(couleur):
-    return render_template("home.html", stars = get_star_by_hair(couleur))
+    f = FilterByHair()
+    return render_template("home.html", stars = get_star_by_hair(couleur), form=f )
 
 @app.route("/Height")
 def height():
@@ -88,7 +94,7 @@ def editAjouter():
                         starHeight=form.height.data, 
                         starWeight=form.weight.data, 
                         starOrigin=form.origin.data, 
-                        userMail="max.sevot@gmail.com")
+                        userMail=1)
             db.session.add(star)
             db.session.commit()
         except:

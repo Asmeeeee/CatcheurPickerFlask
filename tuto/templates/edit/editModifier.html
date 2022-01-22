@@ -2,10 +2,11 @@
 {% block main %}
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="/static/edit/editAjouter.css">
+  <link rel="stylesheet" href="/static/edit/editModifier.css">
 </head>
   
 <h1>Modifier {{ star.starPrenom }} {{ star.starNom }}</h1>
+
 
 <form method="POST" action="{{ url_for('editStar', id=id) }}">
   <section>
@@ -75,6 +76,9 @@
         {{ formEdit.hairColor.label }}
         {{ formEdit.hairColor }}
       </fieldset>
+    </div>
+    <div class="col-md-3 mb-3">
+      <img class="card-img mx-auto mt-4" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
     </div>
   </div>
 </section>
