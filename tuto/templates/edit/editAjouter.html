@@ -5,12 +5,22 @@
   <link rel="stylesheet" href="/static/edit/editAjouter.css">
 </head>
   
-<h1>Ajouter une star à la liste</h1>
+<h1 class = "littleTitle">Ajouter une star à la liste</h1>
 
 <form method="POST" action="{{ url_for('editAjouter') }}">
+  <article id="main">
   <section>
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <fieldset class="oui">
+          {{ form.prenom.label }}
+          {{ form.prenom(size=20) }}
+        </fieldset>
+        <div class="valid-tooltip">
+          Looks good!
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
         <fieldset class="oui">
           {{ form.nom.label }}
           {{ form.nom(size=20) }}
@@ -19,45 +29,40 @@
         Looks good!
       </div>
     </div>
-    <div class="col-md-4 mb-3">
-      <fieldset class="oui">
-        {{ form.prenom.label }}
-        {{ form.prenom(size=20) }}
-      </fieldset>
-      <div class="valid-tooltip">
-        Looks good!
+      <div class="col-md-4 mb-3">
+        <fieldset class="oui">
+          {{ form.dateNaiss.label }}
+          {{ form.dateNaiss }}
+        </fieldset>
+        <div class="valid-tooltip">
+          Looks good!
+        </div>
       </div>
     </div>
-    <div class="col-md-4 mb-3">
-      <fieldset class="oui">
-        {{ form.dateNaiss.label }}
-        {{ form.dateNaiss }}
-      </fieldset>
-      <div class="valid-tooltip">
-        Looks good!
+    <div class="form-row">
+      <div class="col-md-3 mb-3">
+        <fieldset class="oui">
+          {{ form.origin.label }}
+          {{ form.origin }}
+        </fieldset>
       </div>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="col-md-3 mb-3">
-      <fieldset class="oui">
-        {{ form.origin.label }}
-        {{ form.origin }}
-      </fieldset>
-    </div>
+      </div>
+  </section>
+
+  <section id = "deuxieme">
     <div class="col-md-3 mb-3">
       <fieldset class="oui">
         {{ form.img.label }}
-        {{ form.img }}
+        {{ form.img }} 
       </fieldset>
       <div class="invalid-tooltip">
         Please provide a valid zip.
       </div>
-    </div>
+      </div>
     <div class="col-md-3 mb-3">
       <fieldset class="oui">
         {{ form.height.label }}
-        {{ form.height }}
+        {{ form.height}}
       </fieldset>
       <div class="invalid-tooltip">
       </div>
@@ -78,6 +83,9 @@
     </div>
   </div>
 </section>
+  </article>
+  <div id = "button">
   {{ form.submit }}
+</div>
 </form>
 {% endblock %}

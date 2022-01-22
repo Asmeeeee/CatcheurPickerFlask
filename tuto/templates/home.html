@@ -16,14 +16,27 @@
           <a class="nav-link" href="/Weight">Poids</a>
         </li>
         <li class="nav-item dropdown">
-          <select  class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <option value="Brune">Brune</option>
-            <option value="Blonde">Blonde</option>
-            <option value="Noir">Noir</option>
-            <option value="Rousse">Rousse</option>
-            <option value="Chauve">Chauve</option>
-            <option value="Fantaisie">Fantaisie</option>
-        </select>
+          <div id = "radioColor">
+            <input type="radio" id="hairColorChoice1"
+             name="hairColorChoice" value="brune">
+            <label for="contactChoice1">Brune</label>
+        
+            <input type="radio" id="hairColorChoice2"
+             name="hairColorChoice" value="blonde" checked>
+            <label for="contactChoice2">Blonde</label>
+        
+            <input type="radio" id="hairColorChoice3"
+             name="hairColorChoice" value="rousse">
+            <label for="contactChoice3">Rousse</label>
+
+            <input type="radio" id="hairColorChoice4"
+             name="hairColorChoice" value="fantaisie">
+            <label for="contactChoice2">Fantaisie</label>
+
+            <input type="radio" id="hairColorChoice5"
+             name="hairColorChoice" value="chauve">
+            <label for="contactChoice2">Chauve</label>
+          </div>
         <a class="nav-link dropdown-toggle" href="/hairColor/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Appliquer
         </a>
@@ -43,7 +56,7 @@
   </nav>
 
 
-<h1>Liste des catcheurs du monde</h1>
+<h1 class="littleTitle">Liste des catcheurs du monde</h1>
 
 <section class="tuile">
     <div class="row">
