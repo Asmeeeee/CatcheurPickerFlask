@@ -16,6 +16,7 @@
           <a class="nav-link" href="/Weight">Poids</a>
         </li>
         <li class="nav-item dropdown">
+<<<<<<< HEAD
          <form method="POST" class="form-inline my-2 my-lg-0", action="{{ url_for('hairColor')}}">
           <label for="hairColor">Couleur de cheveux</label>
           <select class="form-select" aria-label="Default select example" name="hairColorChoice">
@@ -47,15 +48,50 @@
            </li>
         </li>
         <li class="nav-item"></li>
+=======
+          <div id = "radioColor">
+            <input type="radio" id="hairColorChoice1"
+             name="hairColorChoice" value="brune" checked>
+            <label for="contactChoice1">Brune</label>
+        
+            <input type="radio" id="hairColorChoice2"
+             name="hairColorChoice" value="blonde">
+            <label for="contactChoice2">Blonde</label>
+        
+            <input type="radio" id="hairColorChoice3"
+             name="hairColorChoice" value="rousse">
+            <label for="contactChoice3">Rousse</label>
+
+            <input type="radio" id="hairColorChoice4"
+             name="hairColorChoice" value="fantaisie">
+            <label for="contactChoice2">Fantaisie</label>
+
+            <input type="radio" id="hairColorChoice5"
+             name="hairColorChoice" value="chauve">
+            <label for="contactChoice2">Chauve</label>
+          </div>
+
+          <script>
+            function displayRadioValue() {
+                var ele = document.getElementsByName('hairColorChoice');
+                for(i = 0; i < ele.length; i++) {
+                    if(ele[i].checked)
+                    document.getElementById('navbarDropdown').href
+                            = "/HairColor/"+ele[i].value;
+                }
+            }
+        </script>
+
+        <a class="nav-link dropdown-toggle" href="/HairColor/"+{{ result }} id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="displayRadioValue()">
+          Appliquer
+        </a>
+>>>>>>> fe619f551d9a156381019d1c97a7d216861ef35a
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">Action</a>
             <a class="dropdown-item" href="#">Another action</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disable" href="/Safe">Safe Mode</a>
         </li>
       </ul>
         <form method="POST" class="form-inline my-2 my-lg-0" action="{{ url_for('recherche') }}">
@@ -66,7 +102,7 @@
   </nav>
 
 
-<h1>Liste des catcheurs du monde</h1>
+<h1 class="littleTitle">Liste des catcheurs du monde</h1>
 
 <section class="tuile">
     <div class="row">
