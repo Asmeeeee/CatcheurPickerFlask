@@ -15,6 +15,11 @@ article > section{
     width: 60%;
 }
 
+
+#deuxieme{
+  display: flex;
+}
+
 .littleTitle{
     margin: 10px;
     font-style: bold;
@@ -23,6 +28,23 @@ article > section{
 
 #nom, #prenom, #height, #weight{
     width: 170%;
+}
+
+.image{
+  border: 4px solid black;
+  border-radius: 4px;
+  padding: 2px;
+  max-width: 200px;
+  box-shadow:8px 8px 10px 0 rgba(0,0,0,0.5);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.image:hover {
+  transform:scale(1.2);
 }
 
 #button{

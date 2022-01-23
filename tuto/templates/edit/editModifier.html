@@ -51,47 +51,50 @@
       </section>
 
       <section id="deuxieme">
-      <div class="col-md-3 mb-3">
-        <fieldset class="oui">
-          {{ formEdit.img.label }}
-          {{ formEdit.img }}
-        </fieldset>
-        <div class="invalid-tooltip">
-          Please provide a valid zip.
+        <div class="otherSide">
+              <div class="col-md-3 mb-3">
+                <fieldset class="oui">
+                  {{ formEdit.img.label }}
+                  {{ formEdit.img }}
+                </fieldset>
+                <div class="invalid-tooltip">
+                  Please provide a valid zip.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <fieldset class="oui">
+                  {{ formEdit.height.label }}
+                  {{ formEdit.height }}
+                </fieldset>
+                <div class="invalid-tooltip">
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <fieldset class="oui">
+                  {{ formEdit.weight.label }}
+                  {{ formEdit.weight }}
+                </fieldset>
+                <div class="invalid-tooltip">
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <fieldset class="oui">
+                  {{ formEdit.hairColor.label }}
+                  {{ formEdit.hairColor }}
+                </fieldset>
+              </div>
         </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <fieldset class="oui">
-          {{ formEdit.height.label }}
-          {{ formEdit.height }}
-        </fieldset>
-        <div class="invalid-tooltip">
+        <div class="imageSide">
+          <img class="image" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
         </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <fieldset class="oui">
-          {{ formEdit.weight.label }}
-          {{ formEdit.weight }}
-        </fieldset>
-        <div class="invalid-tooltip">
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <fieldset class="oui">
-          {{ formEdit.hairColor.label }}
-          {{ formEdit.hairColor }}
-        </fieldset>
-      </div>
-      <div class="col-md-3 mb-3">
-        <img class="card-img mx-auto mt-4" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
-      </div>
+      </section>
     </div>
   </div>
-  </section>
   </article>
   <div id = "button">
     {{ formEdit.submit }}
     {{ formEdit.submitRemove }}
   </div>
+
 </form>
 {% endblock %}
