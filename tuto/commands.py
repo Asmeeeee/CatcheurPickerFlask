@@ -1,6 +1,6 @@
 import click
 from .app import app, db
-from .models import Author, Book
+from .models import Star, Utilisateur
 
 @app.cli.command()
 def syncdb():
@@ -19,29 +19,33 @@ def loaddb(filename):
     db.create_all()
 
     import yaml
-    books = yaml.load(open(filename), Loader=yaml.FullLoader)
+    star = yaml.load(open(filename), Loader=yaml.FullLoader)
 
     # Premier passage : lecture et création des auteurs
-    authors = dict()
-    for b in books:
-        a = b["author"]
-        if a not in authors:
-            nouveau = Author(name=a)
+    stars = dict()
+    for s in star:
+        a = s["userMail"]
+        if a not in stars:
+            nouveau = Utilisateur(userMail=a)
             # On ajoute l'obj nouveau à la base
             db.session.add(nouveau)
-            authors[a] = nouveau
+            stars[a] = nouveau
     # On dit à la bd d'intégrer toutes les nouvelles données
     # Des id vont être automatiquement créés pour les auteurs
     db.session.commit()
 
     #Création des livres
-    for b in books:
-        a = authors[b["author"]]
-        book = Book(price = b["price"],
-                    title = b["title"],
-                    url   = b["url"],
-                    img   = b["img"],
-                    author_id = a.id)
+    for b in star:
+        a = stars[b["userMail"]]
+        diva = Star(starNom = b["LastName"],
+                    starPrenom = b["Name"],
+                    starDateNaiss = b["DateNaiss"],
+                    starImg = b["img"],
+                    starHair = b['hairColor'],
+                    starHeight = b['taille'],
+                    starWeight = b['poids'],
+                    starOrigin = b['nationnalite'],
+                    userMail = b["userMail"])
     #On ajoute l'objet o à la base
-        db.session.add(book)
+        db.session.add(diva)
     db.session.commit()

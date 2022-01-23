@@ -1,52 +1,59 @@
+from datetime import datetime
+from email.policy import default
+from sqlalchemy import func
 import yaml, os.path
 from .app import app, db
 
-Books = yaml.load(
-    open(
-        os.path.join(
-            os.path.dirname(__file__),
-            "data.yml"
-        )
-    ), Loader=yaml.FullLoader
-)
-
 def get_sample():
-    return Book.query.limit(1000).all()
-
-def get_book_detail(bookid):
-    return Book.get(bookid)
-
-def get_author(id):
-    return Author.query.get_or_404(id)
+    return Star.query.limit(150).all()
 
 def get_star_detail(starid):
     return Star.query.get_or_404(starid)
 
+def get_star_by_hair(couleur):
+    return Star.query.filter(Star.starHair == couleur).all()
+
+def get_star_by_height():
+    return Star.query.order_by(Star.starHeight).all()
+
+def get_star_by_weight():
+    return Star.query.order_by(Star.starWeight).all()
+
+def get_star_by_origin(nationnalite="Americain"):
+    return Star.query.filter(Star.starOrigin == nationnalite).all()
+
+def get_safe_mode():
+    return Star.query.filter(Star.starId == 1)
+
+# def get_lastId():
+#     max_id = db.session.query(func.max(Star.starId)).scalar()
+#     return max_id + 1 
+
+def get_star(id):
+    return Star.query.filter(Star.starId == id)
+
+class Utilisateur(db.Model):
+    userId = db.Column(db.Integer, primary_key=True)
+    userName = db.Column(db.String(100))
+    userLastName = db.Column(db.String(100))
+    userMail = db.Column(db.String(100))
+    userPassword = db.Column(db.String(100))
+
+    def __repr__(self):
+        return "<Utilisateur (%d) %s>" % (self.userName, self.userLastName)
+
 class Star(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    nom = db.Column(db.String(100))
-    prenom = db.Column(db.String(100))
-    dateNaiss = db.Column(db.String(100))
-    img = db.Column(db.String(100))
+    starId = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    starNom = db.Column(db.String(100))
+    starPrenom = db.Column(db.String(100))
+    starDateNaiss = db.Column(db.Date)
+    starImg = db.Column(db.String(100), default="none.png")
+    starHair = db.Column(db.String(100))
+    starHeight = db.Column(db.Integer)
+    starWeight = db.Column(db.Integer)
+    starOrigin = db.Column(db.String(100))
+    star = db.relationship("Utilisateur", backref=db.backref("star", lazy="dynamic"))
+    userMail = db.Column(db.String(100), db.ForeignKey("utilisateur.userMail"))
 
     def __repr__(self):
-        return "<Star (%d) %s>" % (self.nom, self.prenom)
-
-class Author(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-
-    def __repr__(self):
-        return "<Author (%d) %s>" % (self.id, self.name)
-
-class Book(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    price = db.Column(db.Float)
-    title = db.Column(db.String(120))
-    url = db.Column(db.String(250))
-    author = db.relationship("Author", backref=db.backref("books", lazy="dynamic"))
-    img = db.Column(db.String(90))
-    author_id = db.Column(db.Integer, db.ForeignKey("author.id"))
-
-    def __repr__(self):
-        return "<Book (%d) %s>" % (self.id, self.title)
+        return "%d %s %s %s %s %s %s %s %s" % (self.starId, self.starNom, self.starPrenom, self.starDateNaiss, self.starImg, self.starHair, self.starHeight, self.starWeight, self.starOrigin)

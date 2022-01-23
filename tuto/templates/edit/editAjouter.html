@@ -2,64 +2,88 @@
 {% block main %}
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="../../static/edit/editAjouter.css">
+  <link rel="stylesheet" href="/static/edit/editAjouter.css">
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="/editAjouter">Ajouter</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/editSupprimer">Supprimer</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/editModifier">Modifier</a>
-      </li>
-    </ul>
-  </div>
-</nav>
   
-<h1>Edit author Ajouter</h1>
-<form role="form" method="POST" action="">
-  <ul>
-    <li><label for="prenom">Prénom: </label>
-    <input type="text" id="prenom" placeholder="Jewelz" name="prenom" required  
-    >
-    <label>*</label>
-  </li>
-  <br>
-  <li><label for="nom">Nom: </label>
-    <input type="text" id="nom" placeholder="Blu" name="nom" required  
-    >
-    <label>*</label>
-  </li>
-    <br>
-    <br>
-  <li>
-  <label for ="nationalite">Nationalité: </label>
-    <select name="nationalite" id="nationalite" required>
-        <option value="Inconnue">Inconnue</option>
-        <option value="Americain">Americain</option>
-        <option value="Africaine">Africaine</option>
-        <option value="Asiatique">Asiatique</option>
-        <option value="Mexicain">Mexicain</option>
-        <option value="Russe">Russe</option>
-        <option value="Francaise">Française</option>
-        <option value="Italienne">Italienne</option>
-    </select>
-    </li>
-    <br>
-    <br>
-    <li><label for="illustration">Illustration: </label>
-    <input type="file"
-    name="illustration" id="illustration"></li>
-    <br>
-    <input class="btn btn-default" type="submit" value="Enregistrer">
-  </ul>
-    
+<h1 class = "littleTitle">Ajouter une star à la liste</h1>
+
+<form method="POST" action="{{ url_for('editAjouter') }}">
+  <article id="main">
+  <section>
+      <div class="col-md-4 mb-3">
+        <fieldset class="oui">
+          {{ form.prenom.label }}
+          {{ form.prenom(size=20) }}
+        </fieldset>
+        <div class="valid-tooltip">
+          Looks good!
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <fieldset class="oui">
+          {{ form.nom.label }}
+          {{ form.nom(size=20) }}
+        </fieldset>
+      <div class="valid-tooltip">
+        Looks good!
+      </div>
+      <div class="col-md-4 mb-3">
+        <fieldset class="oui">
+          {{ form.dateNaiss.label }}
+          {{ form.dateNaiss }}
+        </fieldset>
+        <div class="valid-tooltip">
+          Looks good!
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-3 mb-3">
+        <fieldset class="oui">
+          {{ form.origin.label }}
+          {{ form.origin }}
+        </fieldset>
+      </div>
+      </div>
+  </section>
+
+  <section id = "deuxieme">
+    <div class="col-md-3 mb-3">
+      <fieldset class="oui">
+        {{ form.height.label }}
+        {{ form.height}}
+      </fieldset>
+      <div class="invalid-tooltip">
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <fieldset class="oui">
+        {{ form.weight.label }}
+        {{ form.weight }}
+      </fieldset>
+      <div class="invalid-tooltip">
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <fieldset class="oui">
+        {{ form.img.label }}
+        {{ form.img }} 
+      </fieldset>
+      <div class="invalid-tooltip">
+        Please provide a valid zip.
+      </div>
+      </div>
+    <div class="col-md-3 mb-3">
+      <fieldset class="oui">
+        {{ form.hairColor.label }}
+        {{ form.hairColor }}
+      </fieldset>
+    </div>
+  </div>
+</section>
+  </article>
+  <div id = "button">
+  {{ form.submit }}
+</div>
 </form>
 {% endblock %}

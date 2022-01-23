@@ -1,19 +1,93 @@
 {% extends "base.html" %}
 {% block main %}
-<h1>Salut mon pote</h1>
 
-<section class="bite">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Filtre</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/Height">Taille</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Weight">Poids</a>
+        </li>
+        <li class="nav-item dropdown">
+          <div id = "radioColor">
+            <input type="radio" id="hairColorChoice1"
+             name="hairColorChoice" value="brune" checked>
+            <label for="contactChoice1">Brune</label>
+        
+            <input type="radio" id="hairColorChoice2"
+             name="hairColorChoice" value="blonde">
+            <label for="contactChoice2">Blonde</label>
+        
+            <input type="radio" id="hairColorChoice3"
+             name="hairColorChoice" value="rousse">
+            <label for="contactChoice3">Rousse</label>
+
+            <input type="radio" id="hairColorChoice4"
+             name="hairColorChoice" value="fantaisie">
+            <label for="contactChoice2">Fantaisie</label>
+
+            <input type="radio" id="hairColorChoice5"
+             name="hairColorChoice" value="chauve">
+            <label for="contactChoice2">Chauve</label>
+          </div>
+
+          <script>
+            function displayRadioValue() {
+                var ele = document.getElementsByName('hairColorChoice');
+                for(i = 0; i < ele.length; i++) {
+                    if(ele[i].checked)
+                    document.getElementById('navbarDropdown').href
+                            = "/HairColor/"+ele[i].value;
+                }
+            }
+        </script>
+
+        <a class="nav-link dropdown-toggle" href="/HairColor/"+{{ result }} id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="displayRadioValue()">
+          Appliquer
+        </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+  </nav>
+
+
+<h1 class="littleTitle">Liste des catcheurs du monde</h1>
+
+<section class="tuile">
     <div class="row">
-        {% for book in books %}
+        {% for star in stars %}
         <div class="col-sm-2 col-md-4 col-lg-3">
             <div class="card mb-4 shadow-sm">
-                <img class="card-img mx-auto mt-4" src="{{ url_for('static', filename='images/'+book.img) }}" alt ="{{ book.title }}"/>
+                <img class="card-img mx-auto mt-4" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
                 <div class="card-body">
-                    <a href="{{ book.url }}"> {{ book.title }}</a>
-                    <p>Auteur : {{ book.author }}</p>
-                    <p>Prix : {{ book.price }}€</p>
-                    <a href="{{ book.url }}" class="btn btn-primary">
-                        Acheter
+                    <a href="/editModifier/{{star.starId}}"> Modifier {{ star.starPrenom }} {{ star.starNom }} </a>
+                    <p>Nom : {{ star.starNom }}</p>
+                    <p>Prenom : {{ star.starPrenom }}</p>
+                    <p>Date de naissance : {{ star.starDateNaiss }}</p>
+                    <p>Couleur de cheveux : {{ star.starHair }}</p>
+                    <p>Taille : {{ star.starHeight }}m</p>
+                    <p>Poids : {{ star.starWeight }}kg</p>
+                    <p>Nationnalité : {{ star.starOrigin }}</p>
+                    <small>Envie de te battre ?</small>
+                    <a href="/" class="btn btn-primary">
+                        Se Battre
                     </a>
                 </div>
             </div>
