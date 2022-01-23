@@ -1,6 +1,5 @@
-from time import strftime
 from .app import app, db
-from flask import flash, render_template, redirect, session, url_for
+from flask import flash, render_template, redirect, request, session, url_for
 from .models import *
 from flask_wtf import FlaskForm
 from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField, FileField
@@ -12,29 +11,29 @@ class CreateStar(FlaskForm):
     nom = StringField('Nom', validators =[validators.InputRequired()])
     dateNaiss = DateField('Date de naissance')
     origin = SelectField('Nationnalité', [DataRequired()], choices =[
-                                                                    ('Inconnu', 'Inconnu'),
-                                                                    ('Française', 'Française'),
-                                                                    ('Américaine', 'Américaine'),
-                                                                    ('Africaine', 'Africaine'),
-                                                                    ('Asiatique', 'Asiatique'),
-                                                                    ('Mexicaine', 'Mexicaine'),
-                                                                    ('Russe', 'Russe'),
-                                                                    ('Italienne', 'Italienne')
+                                                                    ('inconnu', 'Inconnu'),
+                                                                    ('francaise', 'Française'),
+                                                                    ('americaine', 'Américaine'),
+                                                                    ('africaine', 'Africaine'),
+                                                                    ('asiatique', 'Asiatique'),
+                                                                    ('mexicaine', 'Mexicaine'),
+                                                                    ('russe', 'Russe'),
+                                                                    ('italienne', 'Italienne'),
+                                                                    ('arabe', 'Arabe')
                                                                     ])
     img = FileField('Image')
     height = StringField('Taille', validators =[validators.InputRequired()])
     weight = StringField('Poids', validators =[validators.InputRequired()])
     hairColor = SelectField('Couleur de cheveux', [DataRequired()], choices =[
-                                                                             ('Blond', 'Blonde'),
-                                                                             ('Brun', 'Brune'),
-                                                                             ('Roux', 'Rousse'),
-                                                                             ('Noir', 'Noir'),
-                                                                             ('Chauve', 'Chauve'),
-                                                                             ('Fantaisie', 'Fantaisie')
+                                                                             ('blond', 'Blond'),
+                                                                             ('brun', 'Brun'),
+                                                                             ('roux', 'Roux'),
+                                                                             ('noir', 'Noir'),
+                                                                             ('chauve', 'Chauve'),
+                                                                             ('fantaisie', 'Fantaisie')
                                                                              ])
     submit = SubmitField("Save")
     submitRemove = SubmitField("Remove")
-
 
 @app.route("/")
 def home():
@@ -44,8 +43,9 @@ def home():
         stars = get_sample()
     )
 
-@app.route("/hairColor/<string:couleur>")
-def hairColor(couleur):
+@app.route("/hairColor/", methods=['GET', 'POST'])
+def hairColor():
+    couleur = request.form['hairColorChoice']
     return render_template("home.html", stars = get_star_by_hair(couleur))
 
 @app.route("/Height")
@@ -56,14 +56,20 @@ def height():
 def weight():
     return render_template("home.html", stars = get_star_by_weight())
 
-@app.route("/Origin/<string:origin>")
-def origin(origin):
+@app.route("/Origin/", methods=['GET', 'POST'])
+def origin():
+    origin = request.form['originChoice']
     return render_template("home.html", stars = get_star_by_origin(origin))
 
 @app.route("/Safe")
 def safe():
-    print("hello")
     return render_template("home.html", stars = get_safe_mode())
+
+@app.route("/recherche", methods=['GET', 'POST'])
+def recherche():
+    recherche = request.form["recherche"]
+    print(recherche)
+    return render_template("home.html", stars = search_star(recherche))
 
 
 @app.route("/editSupprimer")
@@ -80,20 +86,20 @@ def editAjouter():
     if form.submit.data:
         try:
             star = Star(
-                        starNom=form.nom.data, 
-                        starPrenom=form.prenom.data, 
-                        starDateNaiss=form.dateNaiss.data, 
-                        starImg=img, 
-                        starHair=form.hairColor.data, 
-                        starHeight=form.height.data, 
-                        starWeight=form.weight.data, 
-                        starOrigin=form.origin.data, 
-                        userMail="max.sevot@gmail.com")
+                            starNom=form.nom.data, 
+                            starPrenom=form.prenom.data, 
+                            starDateNaiss=form.dateNaiss.data, 
+                            starImg=img, 
+                            starHair=form.hairColor.data, 
+                            starHeight=form.height.data, 
+                            starWeight=form.weight.data, 
+                            starOrigin=form.origin.data, 
+                            starUserId=1)
             db.session.add(star)
             db.session.commit()
-        except:
-            print("Erreur lors de l'insertion")
-        flash('Merci pour votre Star')
+            #print("Erreur lors de l'insertion")
+        except :
+            flash('Merci pour votre Star')
         return redirect("/editAjouter")
     return render_template( '/edit/editAjouter.html', form=form )
 
