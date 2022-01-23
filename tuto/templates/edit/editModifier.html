@@ -5,22 +5,14 @@
   <link rel="stylesheet" href="/static/edit/editModifier.css">
 </head>
   
-<h1 class = "littleTitle">Modifier {{ star.starPrenom }} {{ star.starNom }}</h1>
+<h1 class="littleTitle">Modifier {{ star.starPrenom }} {{ star.starNom }}</h1>
 
 
 <form method="POST" action="{{ url_for('editStar', id=id) }}">
   <article id="main">
-    <section>
-        <div class="col-md-4 mb-3">
-          <fieldset class="oui">
-            {{ formEdit.prenom.label }}
-            {{ formEdit.prenom(size=20) }}
-          </fieldset>
-          <div class="valid-tooltip">
-            Looks good!
-          </div>
-        </div>
-        <div class="col-md-4 mb-3">
+  <section>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
           <fieldset class="oui">
             {{ formEdit.nom.label }}
             {{ formEdit.nom(size=20) }}
@@ -28,59 +20,75 @@
         <div class="valid-tooltip">
           Looks good!
         </div>
-        <div class="col-md-4 mb-3">
-          <fieldset class="oui">
-            {{ formEdit.dateNaiss.label }}
-            {{ formEdit.dateNaiss }}
-          </fieldset>
-          <div class="valid-tooltip">
-            Looks good!
-          </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <fieldset class="oui">
+          {{ formEdit.prenom.label }}
+          {{ formEdit.prenom(size=20) }}
+        </fieldset>
+        <div class="valid-tooltip">
+          Looks good!
         </div>
       </div>
-      <div class="form-row">
-        <div class="col-md-3 mb-3">
-          <fieldset class="oui">
-            {{ formEdit.origin.label }}
-            {{ formEdit.origin }}
-          </fieldset>
-        </div>
-        </div>
-    </section>
-  
-    <section id = "deuxieme">
-      <div class="col-md-3 mb-3">
+      <div class="col-md-4 mb-3">
         <fieldset class="oui">
-          {{ formEdit.height.label }}
-          {{ formEdit.height}}
+          {{ formEdit.dateNaiss.label }}
+          {{ formEdit.dateNaiss }}
         </fieldset>
-        <div class="invalid-tooltip">
+        <div class="valid-tooltip">
+          Looks good!
         </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <fieldset class="oui">
-          {{ formEdit.weight.label }}
-          {{ formEdit.weight }}
-        </fieldset>
-        <div class="invalid-tooltip">
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <fieldset class="oui">
-          {{ formEdit.img.label }}
-          {{ formEdit.img }} 
-        </fieldset>
-        <div class="invalid-tooltip">
-          Please provide a valid zip.
-        </div>
-        </div>
-      <div class="col-md-3 mb-3">
-        <fieldset class="oui">
-          {{ formEdit.hairColor.label }}
-          {{ formEdit.hairColor }}
-        </fieldset>
       </div>
     </div>
+    <div class="form-row">
+      <div class="col-md-3 mb-3">
+        <fieldset class="oui">
+          {{ formEdit.origin.label }}
+          {{ formEdit.origin }}
+        </fieldset>
+      </div>
+      </div>
+      </section>
+
+      <section id="deuxieme">
+        <div class="otherSide">
+              <div class="col-md-3 mb-3">
+                <fieldset class="oui">
+                  {{ formEdit.img.label }}
+                  {{ formEdit.img }}
+                </fieldset>
+                <div class="invalid-tooltip">
+                  Please provide a valid zip.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <fieldset class="oui">
+                  {{ formEdit.height.label }}
+                  {{ formEdit.height }}
+                </fieldset>
+                <div class="invalid-tooltip">
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <fieldset class="oui">
+                  {{ formEdit.weight.label }}
+                  {{ formEdit.weight }}
+                </fieldset>
+                <div class="invalid-tooltip">
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <fieldset class="oui">
+                  {{ formEdit.hairColor.label }}
+                  {{ formEdit.hairColor }}
+                </fieldset>
+              </div>
+        </div>
+      <div class="imageSide">
+        <img class="image" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
+      </div>
+    </div>
+<<<<<<< HEAD
     <div class="col-md-3 mb-3">
       <fieldset class="oui">
         {{ formEdit.hairColor.label }}
@@ -90,6 +98,14 @@
     <div class="col-md-3 mb-3">
       <img class="card-img mx-auto mt-4" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
     </div>
+=======
   </div>
-  </form>
+  </section>
+  </article>
+  <div id = "button">
+    {{ formEdit.submit }}
+    {{ formEdit.submitRemove }}
+>>>>>>> f54595a0b43ba03287e245c95b39a7d7f4a19b8b
+  </div>
+</form>
 {% endblock %}
