@@ -1,8 +1,4 @@
-nav ul li a {
-    text-decoration: none;
-    float: left;
-    text-align: center;
-    font-family: 'Gloria Hallelujah', cursive;
-    color: #E6E6E6;
-
+.nav-link{
+    color:yellow;
 }
+
