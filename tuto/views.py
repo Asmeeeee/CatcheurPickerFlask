@@ -86,20 +86,20 @@ def editAjouter():
     if form.submit.data:
         try:
             star = Star(
-                        starNom=form.nom.data, 
-                        starPrenom=form.prenom.data, 
-                        starDateNaiss=form.dateNaiss.data, 
-                        starImg=img, 
-                        starHair=form.hairColor.data, 
-                        starHeight=form.height.data, 
-                        starWeight=form.weight.data, 
-                        starOrigin=form.origin.data, 
-                        userMail=1)
+                            starNom=form.nom.data, 
+                            starPrenom=form.prenom.data, 
+                            starDateNaiss=form.dateNaiss.data, 
+                            starImg=img, 
+                            starHair=form.hairColor.data, 
+                            starHeight=form.height.data, 
+                            starWeight=form.weight.data, 
+                            starOrigin=form.origin.data, 
+                            starUserId=1)
             db.session.add(star)
             db.session.commit()
-        except:
-            print("Erreur lors de l'insertion")
-        flash('Merci pour votre Star')
+            #print("Erreur lors de l'insertion")
+        except :
+            flash('Merci pour votre Star')
         return redirect("/editAjouter")
     return render_template( '/edit/editAjouter.html', form=form )
 

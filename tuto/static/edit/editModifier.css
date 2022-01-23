@@ -1,0 +1,102 @@
+#main{
+    display: flex;
+    align-items: center;
+}
+
+article > section{
+    background-color: rgb(172, 172, 172);
+    border-radius: 5px;
+    border: 3px;
+    border-style:groove;
+    border-color: black;
+    margin-inline: 5%;
+    padding: 0.5%;
+    height: 325px;
+    width: 60%;
+}
+
+
+#deuxieme{
+  display: flex;
+}
+
+.littleTitle{
+    margin: 10px;
+    font-style: bold;
+    text-decoration: underline;
+}
+
+#nom, #prenom, #height, #weight{
+    width: 170%;
+}
+
+.image{
+  border: 4px solid black;
+  border-radius: 4px;
+  padding: 2px;
+  max-width: 200px;
+  box-shadow:8px 8px 10px 0 rgba(0,0,0,0.5);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.image:hover {
+  transform:scale(1.2);
+}
+
+#button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#submit {
+    display: inline-block;
+    margin: 1%;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: black;
+    background-color: rgb(152, 255, 160);
+    border: none;
+    align-self: center;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+#submit:hover {background-color: rgba(94, 91, 87, 0.445)}
+  
+#submit:active {
+    background-color: rgba(36, 35, 34, 0.288);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+  #submitRemove {
+    display: inline-block;
+    margin: 1%;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: black;
+    background-color: rgb(139, 35, 35);
+    border: none;
+    align-self: center;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+#submitRemove:hover {background-color: rgba(94, 91, 87, 0.445)}
+  
+#submitRemove:active {
+    background-color: rgba(63, 19, 16, 0.288);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
