@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
 }
+
 article > section{
     background-color: bisque;
     border-radius: 5px;
@@ -14,16 +15,11 @@ article > section{
     width: 60%;
 }
 
-
-
 .littleTitle{
     margin: 10px;
     font-style: bold;
     text-decoration: underline;
 }
-
-
-
 
 #nom, #prenom, #height, #weight{
     width: 170%;
