@@ -1,6 +1,6 @@
 from datetime import datetime
 from email.policy import default
-from sqlalchemy import func
+from sqlalchemy import func, or_
 import yaml, os.path
 from .app import app, db
 
@@ -25,9 +25,9 @@ def get_star_by_origin(nationnalite="Americain"):
 def get_safe_mode():
     return Star.query.filter(Star.starId == 1)
 
-# def get_lastId():
-#     max_id = db.session.query(func.max(Star.starId)).scalar()
-#     return max_id + 1 
+def search_star(recherche):
+    print(recherche)
+    return Star.query.filter(Star.starNom.contains(recherche) | Star.starPrenom.contains(recherche))
 
 def get_star(id):
     return Star.query.filter(Star.starId == id)

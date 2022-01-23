@@ -1,6 +1,5 @@
-from time import strftime
 from .app import app, db
-from flask import flash, render_template, redirect, session, url_for
+from flask import flash, render_template, redirect, request, session, url_for
 from .models import *
 from flask_wtf import FlaskForm
 from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField, FileField
@@ -19,7 +18,8 @@ class CreateStar(FlaskForm):
                                                                     ('asiatique', 'Asiatique'),
                                                                     ('mexicaine', 'Mexicaine'),
                                                                     ('russe', 'Russe'),
-                                                                    ('italienne', 'Italienne')
+                                                                    ('italienne', 'Italienne'),
+                                                                    ('arabe', 'Arabe')
                                                                     ])
     img = FileField('Image')
     height = StringField('Taille', validators =[validators.InputRequired()])
@@ -35,24 +35,18 @@ class CreateStar(FlaskForm):
     submit = SubmitField("Save")
     submitRemove = SubmitField("Remove")
 
-class FilterByHair(FlaskForm):
-    color= CreateStar.hairColor
-    submit = SubmitField('Trier par')
-
-
-
 @app.route("/")
 def home():
     return render_template(
         "home.html",
         title = "Liste des catcheur(ses)",
-        stars = get_sample(), form=FilterByHair()
+        stars = get_sample()
     )
 
-@app.route("/hairColor/<string:couleur>", methods=['GET', 'POST'])
-def hairColor(couleur):
-    f = FilterByHair()
-    return render_template("home.html", stars = get_star_by_hair(couleur), form=f )
+@app.route("/hairColor/", methods=['GET', 'POST'])
+def hairColor():
+    couleur = request.form['hairColorChoice']
+    return render_template("home.html", stars = get_star_by_hair(couleur))
 
 @app.route("/Height")
 def height():
@@ -62,14 +56,20 @@ def height():
 def weight():
     return render_template("home.html", stars = get_star_by_weight())
 
-@app.route("/Origin/<string:origin>")
-def origin(origin):
+@app.route("/Origin/", methods=['GET', 'POST'])
+def origin():
+    origin = request.form['originChoice']
     return render_template("home.html", stars = get_star_by_origin(origin))
 
 @app.route("/Safe")
 def safe():
-    print("hello")
     return render_template("home.html", stars = get_safe_mode())
+
+@app.route("/recherche", methods=['GET', 'POST'])
+def recherche():
+    recherche = request.form["recherche"]
+    print(recherche)
+    return render_template("home.html", stars = search_star(recherche))
 
 
 @app.route("/editSupprimer")
