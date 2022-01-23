@@ -1,11 +1,15 @@
+from email.mime import image
+import os
 from .app import app, db
-from flask import flash, render_template, redirect, request, session, url_for
+from flask import abort, flash, render_template, redirect, request, session, url_for
 from .models import *
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField
+# from flask_wtf.file import FileField
 from werkzeug.utils import secure_filename
-from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField
+from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField, FileField
 from wtforms.validators import DataRequired
+
+
 
 class CreateStar(FlaskForm):
     id = HiddenField('id')
@@ -23,7 +27,7 @@ class CreateStar(FlaskForm):
                                                                     ('italienne', 'Italienne'),
                                                                     ('arabe', 'Arabe')
                                                                     ])
-    img = FileField('Image')
+    img = FileField("Image")
     height = StringField('Taille', validators =[validators.InputRequired()])
     weight = StringField('Poids', validators =[validators.InputRequired()])
     hairColor = SelectField('Couleur de cheveux', [DataRequired()], choices =[
@@ -63,10 +67,6 @@ def origin():
     origin = request.form['originChoice']
     return render_template("home.html", stars = get_star_by_origin(origin))
 
-@app.route("/Safe")
-def safe():
-    return render_template("home.html", stars = get_safe_mode())
-
 @app.route("/recherche", methods=['GET', 'POST'])
 def recherche():
     recherche = request.form["recherche"]
@@ -78,16 +78,25 @@ def recherche():
 def editSupprimer():
     return render_template( 'edit/editSupprimer.html' )
 
+def save_img(form):
+    imageChoice = form.img.data
+    print(imageChoice)
+    filename = secure_filename(imageChoice.filename)
+    if filename != '':
+        file_extension = os.path.splitext(filename)[1]
+        if file_extension not in app.config['UPLOAD_EXTENSIONS']:
+            abort(400)
+    imageChoice.save(os.path.join(app.config['UPLOAD_PATH'], filename))
+    return str(imageChoice).split("'")[1]
+
 @app.route("/editAjouter", methods=['GET', 'POST'])
 def editAjouter():
     form = CreateStar()
-    if form.img.data == "":
-        img = "none.png"
-    else :
-        img = form.img.data
     if form.submit.data:
-        filename = secure_filename(form.img.data.filename)
-        form.file.data.save('/static/images/' + filename)
+        if form.img.data == "":
+            img = "none.png"
+        else :
+            img = save_img(form)
         try:
             star = Star(
                             starNom=form.nom.data, 
@@ -101,13 +110,11 @@ def editAjouter():
                             starUserId=1)
             db.session.add(star)
             db.session.commit()
-            #print("Erreur lors de l'insertion")
         except :
-            flash('Merci pour votre Star')
+            print("Erreur lors de l'insertion")
+        flash('Merci pour votre Star')
         return redirect("/editAjouter")
     return render_template( '/edit/editAjouter.html', form=form )
-
-
 
 @app.route("/editModifier/<int:id>", methods=['GET', 'POST'])
 def editStar(id):
