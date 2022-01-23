@@ -10,4 +10,8 @@ section > div > div > div > img{
     width: 500px;
 }
 
-
+.littleTitle{
+    margin: 10px;
+    font-style: bold;
+    text-decoration: underline;
+}

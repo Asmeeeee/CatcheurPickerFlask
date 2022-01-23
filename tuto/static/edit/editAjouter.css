@@ -4,7 +4,7 @@
 }
 
 article > section{
-    background-color: bisque;
+    background-color: rgb(172, 172, 172);
     border-radius: 5px;
     border: 3px;
     border-style:groove;
@@ -40,7 +40,7 @@ article > section{
     text-decoration: none;
     outline: none;
     color: black;
-    background-color: bisque;
+    background-color: rgb(152, 255, 160);
     border: none;
     align-self: center;
     border-radius: 15px;
