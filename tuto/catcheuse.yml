@@ -14,6 +14,8 @@
   hairColor : brun
   taille : 1,9
   poids : 110
+  nationnalite : americaine
+  userId : 1
 - Name : AJ
   LastName : Lee
   DateNaiss : 1987-03-19
