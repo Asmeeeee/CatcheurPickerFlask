@@ -2,7 +2,9 @@ from .app import app, db
 from flask import flash, render_template, redirect, request, session, url_for
 from .models import *
 from flask_wtf import FlaskForm
-from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField, FileField
+from flask_wtf.file import FileField
+from werkzeug.utils import secure_filename
+from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField
 from wtforms.validators import DataRequired
 
 class CreateStar(FlaskForm):
@@ -84,6 +86,8 @@ def editAjouter():
     else :
         img = form.img.data
     if form.submit.data:
+        filename = secure_filename(form.img.data.filename)
+        form.file.data.save('/static/images/' + filename)
         try:
             star = Star(
                             starNom=form.nom.data, 
