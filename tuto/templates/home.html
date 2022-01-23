@@ -18,11 +18,11 @@
         <li class="nav-item dropdown">
           <div id = "radioColor">
             <input type="radio" id="hairColorChoice1"
-             name="hairColorChoice" value="brune">
+             name="hairColorChoice" value="brune" checked>
             <label for="contactChoice1">Brune</label>
         
             <input type="radio" id="hairColorChoice2"
-             name="hairColorChoice" value="blonde" checked>
+             name="hairColorChoice" value="blonde">
             <label for="contactChoice2">Blonde</label>
         
             <input type="radio" id="hairColorChoice3"
@@ -37,7 +37,19 @@
              name="hairColorChoice" value="chauve">
             <label for="contactChoice2">Chauve</label>
           </div>
-        <a class="nav-link dropdown-toggle" href="/hairColor/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+          <script>
+            function displayRadioValue() {
+                var ele = document.getElementsByName('hairColorChoice');
+                for(i = 0; i < ele.length; i++) {
+                    if(ele[i].checked)
+                    document.getElementById('navbarDropdown').href
+                            = "/HairColor/"+ele[i].value;
+                }
+            }
+        </script>
+
+        <a class="nav-link dropdown-toggle" href="/HairColor/"+{{ result }} id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="displayRadioValue()">
           Appliquer
         </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
