@@ -46,57 +46,6 @@
              </form>
            </li>
         </li>
-<<<<<<< HEAD
-
-        <form method="POST" class="form-inline my-2 my-lg-0", action="{{ url_for('hairColor')}}"></form>
-        <li class="nav-item"></li>
-          <div id = "radioColor">
-            <input type="radio" id="hairColorChoice1"
-             name="hairColorChoice" value="brun" checked>
-            <label for="contactChoice1">Brune</label>
-        
-            <input type="radio" id="hairColorChoice2"
-             name="hairColorChoice" value="blond">
-            <label for="contactChoice2">Blonde</label>
-        
-            <input type="radio" id="hairColorChoice3"
-             name="hairColorChoice" value="roux">
-            <label for="contactChoice3">Rousse</label>
-
-            <input type="radio" id="hairColorChoice4"
-             name="hairColorChoice" value="fantaisie">
-            <label for="contactChoice2">Fantaisie</label>
-
-            <input type="radio" id="hairColorChoice5"
-             name="hairColorChoice" value="chauve">
-            <label for="contactChoice2">Chauve</label>
-          </div>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Trier par</button>
-          </form>
-
-          <script>
-            function displayRadioValue() {
-                var ele = document.getElementsByName('hairColorChoice');
-                for(i = 0; i < ele.length; i++) {
-                    if(ele[i].checked)
-                    document.getElementById('navbarDropdown').href
-                            = "/HairColor/"+ele[i].value;
-                }
-            }
-        </script>
-
-        <a class="nav-link dropdown-toggle" href="/HairColor/"+{{ result }} id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="displayRadioValue()">
-          Appliquer
-        </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-=======
->>>>>>> f54595a0b43ba03287e245c95b39a7d7f4a19b8b
       </ul>
         <form method="POST" class="form-inline my-2 my-lg-0" action="{{ url_for('recherche') }}">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="recherche">

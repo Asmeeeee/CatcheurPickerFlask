@@ -84,28 +84,17 @@
                 </fieldset>
               </div>
         </div>
-      <div class="imageSide">
-        <img class="image" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
-      </div>
+        <div class="imageSide">
+          <img class="image" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
+        </div>
+      </section>
     </div>
-<<<<<<< HEAD
-    <div class="col-md-3 mb-3">
-      <fieldset class="oui">
-        {{ formEdit.hairColor.label }}
-        {{ formEdit.hairColor }}
-      </fieldset>
-    </div>
-    <div class="col-md-3 mb-3">
-      <img class="card-img mx-auto mt-4" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
-    </div>
-=======
   </div>
-  </section>
   </article>
   <div id = "button">
     {{ formEdit.submit }}
     {{ formEdit.submitRemove }}
->>>>>>> f54595a0b43ba03287e245c95b39a7d7f4a19b8b
   </div>
+
 </form>
 {% endblock %}

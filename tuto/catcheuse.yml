@@ -14,12 +14,6 @@
   hairColor : brun
   taille : 1,9
   poids : 110
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> f54595a0b43ba03287e245c95b39a7d7f4a19b8b
-  nationnalite : americaine
-  userId : 1
 - Name : AJ
   LastName : Lee
   DateNaiss : 1987-03-19
@@ -128,11 +122,3 @@
   poids : 54
   nationnalite : americaine
   userId : 1
-
-<<<<<<< HEAD
-=======
-  nationnalite : Américain
-  userMail : max.sevot@gmail.com
->>>>>>> fe619f551d9a156381019d1c97a7d216861ef35a
-=======
->>>>>>> f54595a0b43ba03287e245c95b39a7d7f4a19b8b
