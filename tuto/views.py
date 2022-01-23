@@ -80,7 +80,8 @@ def editSupprimer():
 
 def save_img(form):
     imageChoice = form.img.data
-    print(imageChoice)
+    if str(imageChoice).split("'")[1] == "":
+        return "none.png"
     filename = secure_filename(imageChoice.filename)
     if filename != '':
         file_extension = os.path.splitext(filename)[1]
@@ -93,10 +94,7 @@ def save_img(form):
 def editAjouter():
     form = CreateStar()
     if form.submit.data:
-        if form.img.data == "":
-            img = "none.png"
-        else :
-            img = save_img(form)
+        img = save_img(form)
         try:
             star = Star(
                             starNom=form.nom.data, 
@@ -125,12 +123,14 @@ def editStar(id):
         db.session.commit()
         flash("Vous avez supprimé le catcheur")
         return redirect("/")
-    if f.img.data == "":
-        imgEdit = a.starImg
-    else :
-        imgEdit = f.img.data
     
     if f.submit.data:
+        print(f.img.data)
+        if str(f.img.data).split("'")[1] == "":
+            imgEdit = a.starImg
+        else :
+            imgEdit = save_img(f)
+        print(imgEdit)
         Star.query.filter(Star.starId == id).update({"starNom": f.nom.data,
                                                      "starPrenom": f.prenom.data, 
                                                      "starDateNaiss": f.dateNaiss.data, 

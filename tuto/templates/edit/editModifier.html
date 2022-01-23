@@ -8,7 +8,7 @@
 <h1 class="littleTitle">Modifier {{ star.starPrenom }} {{ star.starNom }}</h1>
 
 
-<form method="POST" action="{{ url_for('editStar', id=id) }}">
+<form enctype="multipart/form-data" method="POST" action="{{ url_for('editStar', id=id) }}">
   <article id="main">
   <section>
     <div class="form-row">
