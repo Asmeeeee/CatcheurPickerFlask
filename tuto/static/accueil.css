@@ -15,3 +15,7 @@ section > div > div > div > img{
     font-style: bold;
     text-decoration: underline;
 }
+
+.pp {
+    object-fit: cover;
+}
