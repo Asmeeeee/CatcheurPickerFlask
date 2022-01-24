@@ -35,6 +35,7 @@ article > section{
   border-radius: 4px;
   padding: 2px;
   max-width: 200px;
+  max-height: 294px;
   box-shadow:8px 8px 10px 0 rgba(0,0,0,0.5);
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
