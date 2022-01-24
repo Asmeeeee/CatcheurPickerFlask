@@ -18,4 +18,5 @@ section > div > div > div > img{
 
 .pp {
     object-fit: cover;
+    margin-top: 1.5rem;
 }
