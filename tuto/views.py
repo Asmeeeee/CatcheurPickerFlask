@@ -9,34 +9,32 @@ from werkzeug.utils import secure_filename
 from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField, FileField
 from wtforms.validators import DataRequired
 
-
-
 class CreateStar(FlaskForm):
     id = HiddenField('id')
     prenom = StringField('Prénom', validators =[validators.InputRequired()])
     nom = StringField('Nom', validators =[validators.InputRequired()])
     dateNaiss = DateField('Date de naissance')
     origin = SelectField('Nationnalité', [DataRequired()], choices =[
-                                                                    ('inconnu', 'Inconnu'),
-                                                                    ('francaise', 'Française'),
+                                                                    ('Inconnu', 'Inconnu'),
+                                                                    ('Française', 'Française'),
                                                                     ('americaine', 'Américaine'),
-                                                                    ('africaine', 'Africaine'),
+                                                                    ('Américaine', 'Africaine'),
                                                                     ('asiatique', 'Asiatique'),
-                                                                    ('mexicaine', 'Mexicaine'),
-                                                                    ('russe', 'Russe'),
-                                                                    ('italienne', 'Italienne'),
-                                                                    ('arabe', 'Arabe')
+                                                                    ('Asiatique', 'Mexicaine'),
+                                                                    ('Russe', 'Russe'),
+                                                                    ('Italienne', 'Italienne'),
+                                                                    ('Arabe', 'Arabe')
                                                                     ])
     img = FileField("Image")
     height = StringField('Taille', validators =[validators.InputRequired()])
     weight = StringField('Poids', validators =[validators.InputRequired()])
     hairColor = SelectField('Couleur de cheveux', [DataRequired()], choices =[
-                                                                             ('blond', 'Blond'),
-                                                                             ('brun', 'Brun'),
-                                                                             ('roux', 'Roux'),
-                                                                             ('noir', 'Noir'),
-                                                                             ('chauve', 'Chauve'),
-                                                                             ('fantaisie', 'Fantaisie')
+                                                                             ('Blond', 'Blond'),
+                                                                             ('Brun', 'Brun'),
+                                                                             ('Roux', 'Roux'),
+                                                                             ('Noir', 'Noir'),
+                                                                             ('Chauve', 'Chauve'),
+                                                                             ('Fantaisie', 'Fantaisie')
                                                                              ])
     submit = SubmitField("Save")
     submitRemove = SubmitField("Remove")
@@ -74,9 +72,9 @@ def recherche():
     return render_template("home.html", stars = search_star(recherche))
 
 
-@app.route("/editSupprimer")
-def editSupprimer():
-    return render_template( 'edit/editSupprimer.html' )
+# @app.route("/editSupprimer")
+# def editSupprimer():
+#     return render_template( 'edit/editSupprimer.html' )
 
 def save_img(form):
     imageChoice = form.img.data
@@ -141,28 +139,3 @@ def editStar(id):
                                                      "starOrigin": f.origin.data})
         db.session.commit()
     return render_template("edit/editModifier.html", star = a, formEdit = f, id=id)
-
-@app.route("/save/author/", methods=["POST"])
-def save_author():
-    f = AuthorForm()
-    # si on est en update d'author
-    if f.id.data != "":
-        id = int(f.id.data)
-        a = get_star(id)
-    else : # on n'a pas d'ID ==> création d'Author
-        a = Utilisateur(userName=f.name.data)
-        db.session.add(a)
-    if f.validate_on_submit():
-        a.name = f.name.data
-        #on sauvegarde l'auteur
-        db.session.commit()
-        id = a.id
-        return redirect(url_for("one_author", id=id))
-    return render_template("edit_author.html",author=a, form=f)
-
-@app.route("/.../")
-def one_author(id):
-    user = get_user(id)
-    return render_template(
-        "home.html",
-        title = "Livre de " + user.name, books=user.name)
