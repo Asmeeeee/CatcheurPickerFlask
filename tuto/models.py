@@ -2,7 +2,7 @@ from datetime import datetime
 from email.policy import default
 from sqlalchemy import func, or_
 import yaml, os.path
-from .app import app, db
+from .app import app, db, login_manager
 from flask_login import UserMixin
 
 def get_sample():
@@ -32,6 +32,10 @@ def search_star(recherche):
 
 def get_star(id):
     return Star.query.filter(Star.starId == id)
+
+@login_manager.user_loader
+def load_user(username):
+    return Utilisateur.query.get(username)
 
 class Utilisateur(db.Model, UserMixin):
     __tablename__='utilisateur'

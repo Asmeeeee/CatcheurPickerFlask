@@ -1,13 +1,28 @@
 from email.mime import image
 import os
+from re import U
 from .app import app, db
 from flask import abort, flash, render_template, redirect, request, session, url_for
 from .models import *
 from flask_wtf import FlaskForm
-# from flask_wtf.file import FileField
+from hashlib import sha256
 from werkzeug.utils import secure_filename
-from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField, FileField
+from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField, FileField, PasswordField
 from wtforms.validators import DataRequired
+from flask_login import login_user, current_user
+
+class LoginForm(FlaskForm):
+    username = StringField("Nom d'utilisateur")
+    password = PasswordField("Mot de passe")
+
+    def get_authenticated_user(self):
+        user = Utilisateur.query.get(self.username.data)
+        if user is None:
+            return None
+        m = sha256()
+        m.update(self.password.data.encode())
+        passwd = m.hexdigest()
+        return user if passwd == user.userPassword else None
 
 class CreateStar(FlaskForm):
     id = HiddenField('id')
@@ -71,10 +86,15 @@ def recherche():
     print(recherche)
     return render_template("home.html", stars = search_star(recherche))
 
-
-# @app.route("/editSupprimer")
-# def editSupprimer():
-#     return render_template( 'edit/editSupprimer.html' )
+@app.route('/login/', methods=['GET', 'POST'])
+def login():
+    f = LoginForm()
+    if f.validate_on_submit():
+        user = f.get_authenticated_user()
+        if user:
+            login_user(user)
+            return redirect(url_for("home"))
+    return render_template("login.html", form=f)
 
 def save_img(form):
     imageChoice = form.img.data
