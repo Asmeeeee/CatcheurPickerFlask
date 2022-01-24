@@ -49,3 +49,30 @@ def loaddb(filename):
     #On ajoute l'objet o à la base
         db.session.add(diva)
     db.session.commit()
+
+@app.cli.command()
+def syncdb():
+    db.create_all()
+
+@app.cli.command()
+@click.argument('username')
+@click.argument('password')
+def newuser(username, password):
+    from .models import Utilisateur
+    from hashlib import sha256
+    m = sha256()
+    m.update(password.encode())
+    u = Utilisateur(userName=username, userPassword=m.hexdigest())
+    db.session.add(u)
+    db.session.commit()
+
+@app.cli.command()
+@click.argument('username')
+@click.argument('password')
+def passwd(username, password):
+    from .models import Utilisateur
+    from hashlib import sha256
+    m = sha256()
+    m.update(password.encode())
+    Utilisateur.query.filter(Utilisateur.userName == username).update({"userPassword":m.hexdigest()})
+    db.session.commit()

@@ -3,6 +3,7 @@ from email.policy import default
 from sqlalchemy import func, or_
 import yaml, os.path
 from .app import app, db
+from flask_login import UserMixin
 
 def get_sample():
     return Star.query.limit(150).all()
@@ -32,16 +33,19 @@ def search_star(recherche):
 def get_star(id):
     return Star.query.filter(Star.starId == id)
 
-class Utilisateur(db.Model):
+class Utilisateur(db.Model, UserMixin):
     __tablename__='utilisateur'
     userId = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userName = db.Column(db.String(100))
     userLastName = db.Column(db.String(100))
     userMail = db.Column(db.String(100))
-    userPassword = db.Column(db.String(100))
+    userPassword = db.Column(db.String(250))
 
     def __repr__(self):
         return "<Utilisateur (%d) %s>" % (self.userName, self.userLastName)
+
+    def get_id(self):
+        return self.userId
 
 class Star(db.Model):
     __tablename__='star'
