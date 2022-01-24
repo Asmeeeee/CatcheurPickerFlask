@@ -1,127 +1,126 @@
 - Name : Johnson
   LastName : Dwayne
-  DateNaiss : 02-05-1972
+  DateNaiss : 1972-05-02
   img : theRock.jpg
   hairColor : chauve
   taille : 1,96
   poids : 118
-  nationnalite : Américain
-  userMail : max.sevot@gmail.com
+  nationnalite : americaine
+  userId : 1
 - Name : John
   LastName : Cena
-  DateNaiss : 23-04-1977
+  DateNaiss : 1977-04-23
   img : johnCena.jpg
   hairColor : brun
   taille : 1,9
   poids : 110
-  nationnalite : Américain
-  userMail : max.sevot@gmail.com
+  nationnalite : americaine
+  userId : 1
 - Name : AJ
   LastName : Lee
-  DateNaiss : 19-03-1987
+  DateNaiss : 1987-03-19
   img : ajLee.jpg
   hairColor : noir
   taille : 1,57
   poids : 49
-  nationnalite : Américain
-  userMail : max.sevot@gmail.com
+  nationnalite : americaine
+  userId : 1
 - Name : Nathalie
   LastName : Knight
-  DateNaiss : 17-05-2000
+  DateNaiss : 2000-05-17
   img : nathalieKnight.jpg
-  hairColor : blonde
+  hairColor : blond
   taille : 1,55
   poids : 50
-  nationnalite : Américain
-  userMail : max.sevot@gmail.com
+  nationnalite : americaine
+  userId : 1
 - Name : Jewelz
   LastName : Blue
-  DateNaiss : 21-09-1994
+  DateNaiss : 1994-09-21
   img : jewelzBlu.jpg
-  hairColor : blue
+  hairColor : fantaisie
   taille : 1,68
   poids : 50
-  nationnalite : Américain
-  userMail : max.sevot@gmail.com
+  nationnalite : americaine
+  userId : 1
 - Name : Brandi
   LastName : Love
-  DateNaiss : 19-03-1973
+  DateNaiss : 1973-03-19
   img : brandiLove.jpg
-  hairColor : blonde
+  hairColor : blond
   taille : 1,70
   poids : 57
-  nationnalite : Américain
-  userMail : jeremy.bettini@gmail.com
+  nationnalite : americaine
+  userId : 2
 - Name : Abella
   LastName : Danger
-  DateNaiss : 19-11-1995
+  DateNaiss : 1995-11-19
   img : abellaDanger.jpg
   hairColor : brun
   taille : 1,63
   poids : 57
-  nationnalite : Américain
-  userMail : jeremy.bettini@gmail.com
+  nationnalite : americaine
+  userId : 2
 - Name : Mia
   LastName : Khalifa
-  DateNaiss : 10-02-1993
+  DateNaiss : 1993-02-10
   img : miaKhalifa.jpg
   hairColor : brun
   taille : 1,57
   poids : 55
-  nationnalite : Arabe
-  userMail : jeremy.bettini@gmail.com
+  nationnalite : arabe
+  userId : 2
 - Name : Riley
   LastName : Reid
-  DateNaiss : 09-07-1991
+  DateNaiss : 1991-07-09
   img : rileyReid.jpg
   hairColor : brun
   taille : 1,63
   poids : 49
-  nationnalite : Américain
-  userMail : max.sevot@gmail.com
+  nationnalite : americaine
+  userId : 1
 - Name : Katie
   LastName : Kush
-  DateNaiss : 21-04-1997
+  DateNaiss : 1997-04-21
   img : katieKush.jpg
-  hairColor : blonde
+  hairColor : blond
   taille : 1,60
   poids : 55
-  nationnalite : Américain
-  userMail : max.sevot@gmail.com
+  nationnalite : americaine
+  userId : 1
 - Name : Anna
   LastName : Polina
-  DateNaiss : 11-09-1989
+  DateNaiss : 1989-09-11
   img : annaPolina.jpg
   hairColor : noir
   taille : 1,73
   poids : 52
-  nationnalite : Française
-  userMail : max.sevot@gmail.com
+  nationnalite : francaise
+  userId : 1
 - Name : Alexis
   LastName : Texas
-  DateNaiss : 25-05-1985
+  DateNaiss : 1985-05-25
   img : alexisTexas.jpg
-  hairColor : blonde
+  hairColor : blond
   taille : 1,73
   poids : 64
-  nationnalite : Américain
-  userMail : max.sevot@gmail.com
+  nationnalite : americaine
+  userId : 1
 - Name : Lana
   LastName : Rhoades
-  DateNaiss : 06-09-1996
+  DateNaiss : 1996-09-06
   img : lanaRhoades.jpg
   hairColor : brun
   taille : 1,60
   poids : 52
-  nationnalite : Américain
-  userMail : max.sevot@gmail.com
+  nationnalite : americaine
+  userId : 1
 - Name : Lexi
   LastName : Lore
-  DateNaiss : 06-09-1996
+  DateNaiss : 1996-09-06
   img : lexiLore.jpg
-  hairColor : blonde
+  hairColor : blond
   taille : 1,65
   poids : 54
-  nationnalite : Américain
-  userMail : max.sevot@gmail.com
-
+  nationnalite : americaine
+  userId : 1

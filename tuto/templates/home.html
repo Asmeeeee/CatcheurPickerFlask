@@ -2,7 +2,7 @@
 {% block main %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Filtre</a>
+  <label for="hairColor">Trier Par</label>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -16,44 +16,53 @@
           <a class="nav-link" href="/Weight">Poids</a>
         </li>
         <li class="nav-item dropdown">
-          <select  class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <option value="Brune">Brune</option>
-            <option value="Blonde">Blonde</option>
-            <option value="Noir">Noir</option>
-            <option value="Rousse">Rousse</option>
-            <option value="Chauve">Chauve</option>
-            <option value="Fantaisie">Fantaisie</option>
-        </select>
-        <a class="nav-link dropdown-toggle" href="/hairColor/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Appliquer
-        </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disable" href="/Safe">Safe Mode</a>
+         <form method="POST" class="form-inline my-2 my-lg-0", action="{{ url_for('hairColor')}}">
+          <label for="hairColor">Couleur de cheveux</label>
+          <select class="form-select" aria-label="Default select example" name="hairColorChoice">
+            <option value="blond">Blond</option>
+            <option value="brun">Brun</option>
+            <option value="roux">Roux</option>
+            <option value="noir">Noir</option>
+            <option value="chauve">Chauve</option>
+            <option value="fantaisie">Fantaisie</option>
+          </select>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Trier par</button>
+          </form>
+          <li class="nav-item dropdown">
+            <form method="POST" class="form-inline my-2 my-lg-0", action="{{ url_for('origin')}}">
+             <label for="hairColor">Nationnalité</label>
+             <select class="form-select" aria-label="Default select example" name="originChoice">
+               <option value="francaise">Française</option>
+               <option value="amaricaine">Américaine</option>
+               <option value="africaine">Africaine</option>
+               <option value="asiatique">Asiatique</option>
+               <option value="mexicaine">Mexicaine</option>
+               <option value="russe">Russe</option>
+               <option value="italienne">Italienne</option>
+               <option value="arabe">Arabe</option>
+               <option value="inconnu">Inconnu</option>
+             </select>
+             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Trier par</button>
+             </form>
+           </li>
         </li>
       </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <form method="POST" class="form-inline my-2 my-lg-0" action="{{ url_for('recherche') }}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="recherche">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="alert('Fait attention à toi')">Search</button>
         </form>
     </div>
   </nav>
 
 
-<h1>Liste des catcheurs du monde</h1>
+<h1 class="littleTitle">Liste des catcheurs du monde</h1>
 
 <section class="tuile">
     <div class="row">
         {% for star in stars %}
         <div class="col-sm-2 col-md-4 col-lg-3">
             <div class="card mb-4 shadow-sm">
-                <img class="card-img mx-auto mt-4" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
+                <img class="card-img mx-auto mt-4 pp" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
                 <div class="card-body">
                     <a href="/editModifier/{{star.starId}}"> Modifier {{ star.starPrenom }} {{ star.starNom }} </a>
                     <p>Nom : {{ star.starNom }}</p>
