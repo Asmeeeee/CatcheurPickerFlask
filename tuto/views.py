@@ -9,7 +9,7 @@ from hashlib import sha256
 from werkzeug.utils import secure_filename
 from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField, FileField, PasswordField
 from wtforms.validators import DataRequired
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, logout_user
 
 class LoginForm(FlaskForm):
     username = StringField("Nom d'utilisateur")
@@ -58,33 +58,32 @@ class CreateStar(FlaskForm):
 def home():
     return render_template(
         "home.html",
-        title = "Liste des catcheur(ses)",
-        stars = get_sample()
+        stars = get_sample(),
+        title="Liste des catcheurs"
     )
 
 @app.route("/hairColor/", methods=['GET', 'POST'])
 def hairColor():
     couleur = request.form['hairColorChoice']
-    return render_template("home.html", stars = get_star_by_hair(couleur))
+    return render_template("home.html", stars = get_star_by_hair(couleur), title="Liste des catcheurs %s" % couleur)
 
 @app.route("/Height")
 def height():
-    return render_template("home.html", stars = get_star_by_height())
+    return render_template("home.html", stars = get_star_by_height(), title="Liste des catcheurs triés par taille croissante")
 
 @app.route("/Weight")
 def weight():
-    return render_template("home.html", stars = get_star_by_weight())
+    return render_template("home.html", stars = get_star_by_weight(), title="Liste des catcheurs triés par poids croissant")
 
 @app.route("/Origin/", methods=['GET', 'POST'])
 def origin():
     origin = request.form['originChoice']
-    return render_template("home.html", stars = get_star_by_origin(origin))
+    return render_template("home.html", stars = get_star_by_origin(origin), title="Liste des catcheurs de nationnalité %s" % origin)
 
 @app.route("/recherche", methods=['GET', 'POST'])
 def recherche():
     recherche = request.form["recherche"]
-    print(recherche)
-    return render_template("home.html", stars = search_star(recherche))
+    return render_template("home.html", stars = search_star(recherche), title="Résulat pour la recherche : %s" % recherche)
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -95,6 +94,11 @@ def login():
             login_user(user)
             return redirect(url_for("home"))
     return render_template("login.html", form=f)
+
+@app.route('/logout/')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 def save_img(form):
     imageChoice = form.img.data

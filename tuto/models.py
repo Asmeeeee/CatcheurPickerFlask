@@ -46,7 +46,7 @@ class Utilisateur(db.Model, UserMixin):
     userPassword = db.Column(db.String(250))
 
     def __repr__(self):
-        return "<Utilisateur (%d) %s>" % (self.userName, self.userLastName)
+        return "<Utilisateur (%s) %s>" % (self.userName, self.userLastName)
 
     def get_id(self):
         return self.userId
