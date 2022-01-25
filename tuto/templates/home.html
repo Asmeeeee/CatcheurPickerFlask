@@ -3,22 +3,23 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <label for="hairColor">Trier Par</label>
+  <div id="trierBox">
+  <label for="hairColor" id = "trier">Trier Par</label>
+  </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/Height">Taille</a>
+        <a class="btn btn-outline-success my-2 my-sm-0" href="/Height">Taille</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Weight">Poids</a>
+        <a class="btn btn-outline-success my-2 my-sm-0" href="/Weight">Poids</a>
       </li>
       <li class="nav-item dropdown">
        <form method="POST" class="form-inline my-2 my-lg-0", action="{{ url_for('hairColor')}}">
-        <label for="hairColor">Couleur de cheveux</label>
+        <label for="hairColor" id ="couleurCheveuxLabel">Couleur de cheveux</label>
         <select class="form-select" aria-label="Default select example" name="hairColorChoice">
           <option value="Blond">Blond</option>
           <option value="Brun">Brun</option>
@@ -28,6 +29,7 @@
           <option value="Fantaisie">Fantaisie</option>
         </select>
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Trier par</button>
+      </li>
         </form>
         <li class="nav-item dropdown">
           <form method="POST" class="form-inline my-2 my-lg-0", action="{{ url_for('origin')}}">
@@ -45,12 +47,11 @@
            </select>
            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Trier par</button>
            </form>
-         </li>
       </li>
     </ul>
   </div>
-  <form method="POST" class="form-inline my-2 my-lg-0" action="{{ url_for('recherche') }}">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="recherche">
+  <form method="POST" class="form-inline my-2 my-lg-0" action="{{ url_for('recherche') }}" id = "searchBarBox">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="recherche" id="SearchBarTop">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 </form>
   </div>
