@@ -39,17 +39,15 @@ def load_user(username):
 
 class Utilisateur(db.Model, UserMixin):
     __tablename__='utilisateur'
-    userId = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    userName = db.Column(db.String(100))
-    userLastName = db.Column(db.String(100))
-    userMail = db.Column(db.String(100))
+    #userId = db.Column(db.Integer, autoincrement=True)
+    userName = db.Column(db.String(100), primary_key=True)
     userPassword = db.Column(db.String(250))
 
     def __repr__(self):
         return "<Utilisateur (%s) %s>" % (self.userName, self.userLastName)
 
     def get_id(self):
-        return self.userId
+        return self.userName
 
 class Star(db.Model):
     __tablename__='star'
@@ -62,7 +60,7 @@ class Star(db.Model):
     starHeight = db.Column(db.Integer)
     starWeight = db.Column(db.Integer)
     starOrigin = db.Column(db.String(100))
-    starUserId = db.Column(db.Integer, db.ForeignKey("utilisateur.userId"))
+    starUserName = db.Column(db.String(100), db.ForeignKey("utilisateur.userName"))
     utilisateur = db.relationship("Utilisateur", backref=db.backref("utilisateur", lazy="dynamic"))
 
     def __repr__(self):

@@ -6,7 +6,7 @@
   taille : 1,96
   poids : 118
   nationnalite : Américaine
-  userId : 1
+  userName : max.sevot@gmail.com
 - Name : John
   LastName : Cena
   DateNaiss : 1977-04-23
@@ -15,7 +15,7 @@
   taille : 1,9
   poids : 110
   nationnalite : Américaine
-  userId : 1
+  userName : max.sevot@gmail.com
 - Name : AJ
   LastName : Lee
   DateNaiss : 1987-03-19
@@ -24,7 +24,8 @@
   taille : 1,57
   poids : 49
   nationnalite : Américaine
-  userId : 1
+  userName : max.sevot@gmail.com
+
 - Name : Nathalie
   LastName : Knight
   DateNaiss : 2000-05-17
@@ -33,7 +34,8 @@
   taille : 1,55
   poids : 50
   nationnalite : Américaine
-  userId : 1
+  userName : max.sevot@gmail.com
+
 - Name : Jewelz
   LastName : Blue
   DateNaiss : 1994-09-21
@@ -42,7 +44,8 @@
   taille : 1,68
   poids : 50
   nationnalite : Américaine
-  userId : 1
+  userName : max.sevot@gmail.com
+
 - Name : Brandi
   LastName : Love
   DateNaiss : 1973-03-19
@@ -51,7 +54,8 @@
   taille : 1,70
   poids : 57
   nationnalite : Américaine
-  userId : 2
+  userName : max.sevot@gmail.com
+  
 - Name : Abella
   LastName : Danger
   DateNaiss : 1995-11-19
@@ -60,7 +64,8 @@
   taille : 1,63
   poids : 57
   nationnalite : Américaine
-  userId : 2
+  userName : max.sevot@gmail.com
+
 - Name : Mia
   LastName : Khalifa
   DateNaiss : 1993-02-10
@@ -69,7 +74,8 @@
   taille : 1,57
   poids : 55
   nationnalite : arabe
-  userId : 2
+  userName : max.sevot@gmail.com
+
 - Name : Riley
   LastName : Reid
   DateNaiss : 1991-07-09
@@ -78,7 +84,8 @@
   taille : 1,63
   poids : 49
   nationnalite : Américaine
-  userId : 1
+  userName : max.sevot@gmail.com
+
 - Name : Katie
   LastName : Kush
   DateNaiss : 1997-04-21
@@ -87,7 +94,8 @@
   taille : 1,60
   poids : 55
   nationnalite : Américaine
-  userId : 1
+  userName : max.sevot@gmail.com
+
 - Name : Anna
   LastName : Polina
   DateNaiss : 1989-09-11
@@ -96,7 +104,8 @@
   taille : 1,73
   poids : 52
   nationnalite : francaise
-  userId : 1
+  userName : max.sevot@gmail.com
+
 - Name : Alexis
   LastName : Texas
   DateNaiss : 1985-05-25
@@ -105,7 +114,8 @@
   taille : 1,73
   poids : 64
   nationnalite : Américaine
-  userId : 1
+  userName : max.sevot@gmail.com
+
 - Name : Lana
   LastName : Rhoades
   DateNaiss : 1996-09-06
@@ -114,7 +124,8 @@
   taille : 1,60
   poids : 52
   nationnalite : Américaine
-  userId : 1
+  userName : max.sevot@gmail.com
+
 - Name : Lexi
   LastName : Lore
   DateNaiss : 1996-09-06
@@ -123,4 +134,4 @@
   taille : 1,65
   poids : 54
   nationnalite : Américaine
-  userId : 1
+  userName : max.sevot@gmail.com

@@ -24,19 +24,23 @@ def loaddb(filename):
     # Premier passage : lecture et création des auteurs
     stars = dict()
     for s in star:
-        a = s["userId"]
+        a = s["userName"]
         if a not in stars:
-            nouveau = Utilisateur(userId=a)
-            # On ajoute l'obj nouveau à la base
-            db.session.add(nouveau)
-            stars[a] = nouveau
+            new = Utilisateur(userName = a)
+            stars[a] = new
+            db.session.add(new)
+        # if a not in stars:
+        #     nouveau = Utilisateur(userName=a)
+        #     # On ajoute l'obj nouveau à la base
+        #     db.session.add(nouveau)
+        #     stars[a] = nouveau
     # On dit à la bd d'intégrer toutes les nouvelles données
     # Des id vont être automatiquement créés pour les auteurs
     db.session.commit()
 
     #Création des livres
     for b in star:
-        a = stars[b["userId"]]
+        a = stars[b["userName"]]
         diva = Star(starNom = b["LastName"],
                     starPrenom = b["Name"],
                     starDateNaiss = b["DateNaiss"],
@@ -45,7 +49,7 @@ def loaddb(filename):
                     starHeight = b['taille'],
                     starWeight = b['poids'],
                     starOrigin = b['nationnalite'],
-                    starUserId = b["userId"])
+                    starUserName = b["userName"])
     #On ajoute l'objet o à la base
         db.session.add(diva)
     db.session.commit()
