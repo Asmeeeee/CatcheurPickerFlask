@@ -33,3 +33,7 @@ section > div > div > div > img{
     transform:scale(1.1);
     z-index: 1;
   }
+
+.log{
+    color: brown;
+}

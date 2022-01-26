@@ -9,7 +9,7 @@ from hashlib import sha256
 from werkzeug.utils import secure_filename
 from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField, FileField, PasswordField
 from wtforms.validators import DataRequired
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_required, login_user, current_user, logout_user
 
 class LoginForm(FlaskForm):
     username = StringField("Nom d'utilisateur")
@@ -17,6 +17,7 @@ class LoginForm(FlaskForm):
 
     def get_authenticated_user(self):
         user = Utilisateur.query.get(self.username.data)
+        print(user)
         if user is None:
             return None
         m = sha256()
@@ -98,7 +99,7 @@ def login():
 @app.route('/logout/')
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
 
 def save_img(form):
     imageChoice = form.img.data
@@ -113,6 +114,7 @@ def save_img(form):
     return str(imageChoice).split("'")[1]
 
 @app.route("/editAjouter", methods=['GET', 'POST'])
+@login_required
 def editAjouter():
     form = CreateStar()
     if form.submit.data:
