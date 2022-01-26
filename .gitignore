@@ -1,10 +1,7 @@
 tuto.db
 ./tuto.db
-tuto/__pycache__
-
+tuto/__pycache__/
 tuto/__pycache__/*
-
 ./tuto/__pycache__
-
 ./tuto/__pycache__/* 
  
