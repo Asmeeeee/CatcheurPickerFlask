@@ -3,32 +3,42 @@ from email.policy import default
 from sqlalchemy import func, or_
 import yaml, os.path
 from .app import app, db, login_manager
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 
 def get_sample():
-    return Star.query.limit(150).all()
+    if current_user.userName == "admin":
+        return Star.query.limit(150).all()
+    else :
+         return Star.query.filter(Star.starUserName == current_user.userName).all()
 
 def get_star_detail(starid):
     return Star.query.get_or_404(starid)
 
 def get_star_by_hair(couleur):
-    return Star.query.filter(Star.starHair == couleur).all()
-
+    if current_user.userName == "admin":
+        return Star.query.filter(Star.starHair == couleur).all()
+    else :
+        return Star.query.filter(Star.starHair == couleur, Star.starUserName == current_user.userName).all()
 def get_star_by_height():
-    return Star.query.order_by(Star.starHeight).all()
+    if current_user.userName == "admin":
+        return Star.query.order_by(Star.starHeight).all()
+    else :
+        return Star.query.filter(Star.starUserName == current_user.userName).order_by(Star.starHeight).all()
 
 def get_star_by_weight():
-    return Star.query.order_by(Star.starWeight).all()
+    return Star.query.filter(Star.starUserName == current_user.userName).order_by(Star.starWeight).all()
 
 def get_star_by_origin(nationnalite="Americain"):
-    return Star.query.filter(Star.starOrigin == nationnalite).all()
-
-def get_safe_mode():
-    return Star.query.filter(Star.starId == 1)
+    if current_user.userName == "admin":
+        return Star.query.filter(Star.starOrigin == nationnalite).all()
+    else :
+        return Star.query.filter(Star.starOrigin == nationnalite, Star.starUserName == current_user.userName).all()
 
 def search_star(recherche):
-    print(recherche)
-    return Star.query.filter(Star.starNom.contains(recherche) | Star.starPrenom.contains(recherche))
+    if current_user.userName == "admin":
+        return Star.query.filter(Star.starNom.contains(recherche) | Star.starPrenom.contains(recherche))
+    else :
+        return Star.query.filter(Star.starNom.contains(recherche) | Star.starPrenom.contains(recherche), Star.starUserName == current_user.userName)
 
 def get_star(id):
     return Star.query.filter(Star.starId == id)

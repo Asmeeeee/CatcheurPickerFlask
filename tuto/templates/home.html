@@ -66,7 +66,9 @@
             <div class="card mb-4 shadow-sm">
                 <img class="card-img mx-auto mt-4 pp" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
                 <div class="card-body">
+                    {% if current_user.userName == star.starUserName or current_user.userName == 'admin' %}
                     <a href="/editModifier/{{star.starId}}"> Modifier {{ star.starPrenom }} {{ star.starNom }} </a>
+                    {% endif %}
                     <p>Nom : {{ star.starNom }}</p>
                     <p>Prenom : {{ star.starPrenom }}</p>
                     <p>Date de naissance : {{ star.starDateNaiss }}</p>

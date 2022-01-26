@@ -14,6 +14,8 @@ from flask_login import login_required, login_user, current_user, logout_user
 class LoginForm(FlaskForm):
     username = StringField("Nom d'utilisateur")
     password = PasswordField("Mot de passe")
+    confirmPassword = PasswordField("Confirmer le mot de passe")
+    next = HiddenField()
 
     def get_authenticated_user(self):
         user = Utilisateur.query.get(self.username.data)
@@ -56,6 +58,7 @@ class CreateStar(FlaskForm):
     submitRemove = SubmitField("Remove")
 
 @app.route("/")
+@login_required
 def home():
     return render_template(
         "home.html",
@@ -82,6 +85,7 @@ def origin():
     return render_template("home.html", stars = get_star_by_origin(origin), title="Liste des catcheurs de nationnalité %s" % origin)
 
 @app.route("/recherche", methods=['GET', 'POST'])
+@login_required
 def recherche():
     recherche = request.form["recherche"]
     return render_template("home.html", stars = search_star(recherche), title="Résulat pour la recherche : %s" % recherche)
@@ -89,12 +93,29 @@ def recherche():
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
     f = LoginForm()
-    if f.validate_on_submit():
+    if not f.is_submitted():
+        f.next.data = request.args.get('next')
+    elif f.validate_on_submit():
         user = f.get_authenticated_user()
         if user:
             login_user(user)
-            return redirect(url_for("home"))
+            next = f.next.data or url_for("home")
+            return redirect(next)
     return render_template("login.html", form=f)
+
+@app.route('/register/', methods=['GET', 'POST'])
+def register():
+    f = LoginForm()
+    print(Utilisateur.query.get(f.username.data))
+    if f.validate_on_submit():
+        if Utilisateur.query.get(f.username.data) == None :
+            if f.password.data == f.confirmPassword.data:
+                m = sha256()
+                m.update(f.password.data.encode())
+                newUser = Utilisateur(userName=f.username.data, userPassword=m.hexdigest())
+                db.session.add(newUser)
+                db.session.commit()
+    return render_template('register.html', form = f)
 
 @app.route('/logout/')
 def logout():
@@ -116,29 +137,31 @@ def save_img(form):
 @app.route("/editAjouter", methods=['GET', 'POST'])
 @login_required
 def editAjouter():
+    print(current_user.userName)
     form = CreateStar()
     if form.submit.data:
         img = save_img(form)
-        try:
-            star = Star(
-                            starNom=form.nom.data, 
-                            starPrenom=form.prenom.data, 
-                            starDateNaiss=form.dateNaiss.data, 
-                            starImg=img, 
-                            starHair=form.hairColor.data, 
-                            starHeight=form.height.data, 
-                            starWeight=form.weight.data, 
-                            starOrigin=form.origin.data, 
-                            starUserId=1)
-            db.session.add(star)
-            db.session.commit()
-        except :
-            print("Erreur lors de l'insertion")
+        # try:
+        star = Star(
+                        starNom=form.nom.data, 
+                        starPrenom=form.prenom.data, 
+                        starDateNaiss=form.dateNaiss.data, 
+                        starImg=img, 
+                        starHair=form.hairColor.data, 
+                        starHeight=form.height.data, 
+                        starWeight=form.weight.data, 
+                        starOrigin=form.origin.data, 
+                        starUserName=current_user.userName)
+        db.session.add(star)
+        db.session.commit()
+        # except :
+        #   print("Erreur lors de l'insertion")
         flash('Merci pour votre Star')
         return redirect("/editAjouter")
     return render_template( '/edit/editAjouter.html', form=form )
 
 @app.route("/editModifier/<int:id>", methods=['GET', 'POST'])
+@login_required
 def editStar(id):
     a = get_star_detail(id)
     f = CreateStar(id=id, prenom=a.starPrenom, nom=a.starNom, img=a.starImg, height=a.starHeight, weight=a.starWeight, hairColor=a.starHair, origin=a.starOrigin, dateNaiss=a.starDateNaiss)

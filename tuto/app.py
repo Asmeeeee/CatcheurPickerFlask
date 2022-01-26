@@ -9,6 +9,7 @@ app.config['MAX_CONTENT_LENGTH']=10000 * 10000
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif']
 app.config['UPLOAD_PATH'] = 'tuto/static/images/'
 login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
 import os.path
 def mkpath(p):
