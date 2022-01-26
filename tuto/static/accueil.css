@@ -47,7 +47,6 @@ ul > li{
     text-align: center;
 }
 
-
 #trierBox{
     text-align: top;
 }
@@ -61,6 +60,7 @@ ul > li{
 
 .form-inline.my-2.my-lg-0 > *{
     width: 130px;
+    text-align: center;
 }
 
 
