@@ -105,7 +105,8 @@
 			      		</div>
 			      	</div>
 							<form class="form-horizontal" role="form" method="POST" action="{{ url_for('register') }}">
-			      		<div class="form-group mt-3">
+			      		{{ form.hidden_tag() }}
+                <div class="form-group mt-3">
                   {{ form.username(size=50, class_="form-control")}}
 			      			<label class="form-control-placeholder" for="username">Pseudo</label>
 			      		</div>

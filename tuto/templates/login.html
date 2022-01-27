@@ -42,8 +42,9 @@
 			      			<h3 class="mb-4">Se connecter</h3>
 			      		</div>
 			      	</div>
-							<form action="#" class="signin-form">
-			      		<div class="form-group mt-3">
+							<form class="form-horizontal" role="form" method="POST" action="{{url_for('login')}}">
+								{{ form.hidden_tag() }}
+								<div class="form-group mt-3">
                   {{ form.username(size=50, class_="form-control")}}
 			      			<label class="form-control-placeholder" for="username">Pseudo</label>
 			      		</div>
