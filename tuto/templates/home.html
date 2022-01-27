@@ -57,16 +57,19 @@
   </div>
 </nav>
 
-<h1 class="littleTitle">Liste des catcheurs du monde</h1>
+<h1 class="littleTitle">{{ title }}</h1>
 
 <section class="tuile">
     <div class="row">
+        {% if current_user.is_authenticated %}
         {% for star in stars %}
         <div class="col-sm-2 col-md-4 col-lg-3" id="boitePerso">
             <div class="card mb-4 shadow-sm">
                 <img class="card-img mx-auto mt-4 pp" src="{{ url_for('static', filename='images/'+star.starImg) }}" alt ="{{ star.starName }}"/>
                 <div class="card-body">
+                    {% if current_user.userName == star.starUserName or current_user.userName == 'admin' %}
                     <a href="/editModifier/{{star.starId}}"> Modifier {{ star.starPrenom }} {{ star.starNom }} </a>
+                    {% endif %}
                     <p>Nom : {{ star.starNom }}</p>
                     <p>Prenom : {{ star.starPrenom }}</p>
                     <p>Date de naissance : {{ star.starDateNaiss }}</p>
@@ -82,6 +85,7 @@
             </div>
         </div>
         {% endfor %}
+        {% endif %}
         
     </div>
 </section>

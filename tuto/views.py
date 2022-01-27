@@ -1,13 +1,31 @@
 from email.mime import image
 import os
+from re import U
 from .app import app, db
 from flask import abort, flash, render_template, redirect, request, session, url_for
 from .models import *
 from flask_wtf import FlaskForm
-# from flask_wtf.file import FileField
+from hashlib import sha256
 from werkzeug.utils import secure_filename
-from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField, FileField
+from wtforms import StringField, HiddenField, validators, SubmitField, SelectField, DateField, FileField, PasswordField
 from wtforms.validators import DataRequired
+from flask_login import login_required, login_user, current_user, logout_user
+
+class LoginForm(FlaskForm):
+    username = StringField("Nom d'utilisateur")
+    password = PasswordField("Mot de passe")
+    confirmPassword = PasswordField("Confirmer le mot de passe")
+    next = HiddenField()
+
+    def get_authenticated_user(self):
+        user = Utilisateur.query.get(self.username.data)
+        print(user)
+        if user is None:
+            return None
+        m = sha256()
+        m.update(self.password.data.encode())
+        passwd = m.hexdigest()
+        return user if passwd == user.userPassword else None
 
 class CreateStar(FlaskForm):
     id = HiddenField('id')
@@ -40,41 +58,69 @@ class CreateStar(FlaskForm):
     submitRemove = SubmitField("Remove")
 
 @app.route("/")
+@login_required
 def home():
     return render_template(
         "home.html",
-        title = "Liste des catcheur(ses)",
-        stars = get_sample()
+        stars = get_sample(),
+        title="Liste des catcheurs"
     )
 
 @app.route("/hairColor/", methods=['GET', 'POST'])
 def hairColor():
     couleur = request.form['hairColorChoice']
-    return render_template("home.html", stars = get_star_by_hair(couleur))
+    return render_template("home.html", stars = get_star_by_hair(couleur), title="Liste des catcheurs %s" % couleur)
 
 @app.route("/Height")
 def height():
-    return render_template("home.html", stars = get_star_by_height())
+    return render_template("home.html", stars = get_star_by_height(), title="Liste des catcheurs triés par taille croissante")
 
 @app.route("/Weight")
 def weight():
-    return render_template("home.html", stars = get_star_by_weight())
+    return render_template("home.html", stars = get_star_by_weight(), title="Liste des catcheurs triés par poids croissant")
 
 @app.route("/Origin/", methods=['GET', 'POST'])
 def origin():
     origin = request.form['originChoice']
-    return render_template("home.html", stars = get_star_by_origin(origin))
+    return render_template("home.html", stars = get_star_by_origin(origin), title="Liste des catcheurs de nationnalité %s" % origin)
 
 @app.route("/recherche", methods=['GET', 'POST'])
+@login_required
 def recherche():
     recherche = request.form["recherche"]
-    print(recherche)
-    return render_template("home.html", stars = search_star(recherche))
+    return render_template("home.html", stars = search_star(recherche), title="Résulat pour la recherche : %s" % recherche)
 
+@app.route('/login/', methods=['GET', 'POST'])
+def login():
+    f = LoginForm()
+    if not f.is_submitted():
+        f.next.data = request.args.get('next')
+    elif f.validate_on_submit():
+        user = f.get_authenticated_user()
+        if user:
+            login_user(user)
+            next = f.next.data or url_for("home")
+            return redirect(next)
+    return render_template("login.html", form=f)
 
-# @app.route("/editSupprimer")
-# def editSupprimer():
-#     return render_template( 'edit/editSupprimer.html' )
+@app.route('/register/', methods=['GET', 'POST'])
+def register():
+    f = LoginForm()
+    print(Utilisateur.query.get(f.username.data))
+    if f.validate_on_submit():
+        if Utilisateur.query.get(f.username.data) == None :
+            if f.password.data == f.confirmPassword.data:
+                m = sha256()
+                m.update(f.password.data.encode())
+                newUser = Utilisateur(userName=f.username.data, userPassword=m.hexdigest())
+                db.session.add(newUser)
+                db.session.commit()
+    return render_template('register.html', form = f)
+
+@app.route('/logout/')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 def save_img(form):
     imageChoice = form.img.data
@@ -89,30 +135,33 @@ def save_img(form):
     return str(imageChoice).split("'")[1]
 
 @app.route("/editAjouter", methods=['GET', 'POST'])
+@login_required
 def editAjouter():
+    print(current_user.userName)
     form = CreateStar()
     if form.submit.data:
         img = save_img(form)
-        try:
-            star = Star(
-                            starNom=form.nom.data, 
-                            starPrenom=form.prenom.data, 
-                            starDateNaiss=form.dateNaiss.data, 
-                            starImg=img, 
-                            starHair=form.hairColor.data, 
-                            starHeight=form.height.data, 
-                            starWeight=form.weight.data, 
-                            starOrigin=form.origin.data, 
-                            starUserId=1)
-            db.session.add(star)
-            db.session.commit()
-        except :
-            print("Erreur lors de l'insertion")
+        # try:
+        star = Star(
+                        starNom=form.nom.data, 
+                        starPrenom=form.prenom.data, 
+                        starDateNaiss=form.dateNaiss.data, 
+                        starImg=img, 
+                        starHair=form.hairColor.data, 
+                        starHeight=form.height.data, 
+                        starWeight=form.weight.data, 
+                        starOrigin=form.origin.data, 
+                        starUserName=current_user.userName)
+        db.session.add(star)
+        db.session.commit()
+        # except :
+        #   print("Erreur lors de l'insertion")
         flash('Merci pour votre Star')
         return redirect("/editAjouter")
     return render_template( '/edit/editAjouter.html', form=form )
 
 @app.route("/editModifier/<int:id>", methods=['GET', 'POST'])
+@login_required
 def editStar(id):
     a = get_star_detail(id)
     f = CreateStar(id=id, prenom=a.starPrenom, nom=a.starNom, img=a.starImg, height=a.starHeight, weight=a.starWeight, hairColor=a.starHair, origin=a.starOrigin, dateNaiss=a.starDateNaiss)

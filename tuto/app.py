@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config['BOOTSTRAP_SERVE_LOCAL'] = True
@@ -7,6 +8,8 @@ Bootstrap(app)
 app.config['MAX_CONTENT_LENGTH']=10000 * 10000
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif']
 app.config['UPLOAD_PATH'] = 'tuto/static/images/'
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
 import os.path
 def mkpath(p):
