@@ -100,6 +100,7 @@ def login():
     if not f.is_submitted():
         f.next.data = request.args.get('next')
     elif f.validate_on_submit():
+        print("here")
         user = f.get_authenticated_user()
         if user:
             login_user(user)
