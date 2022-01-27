@@ -11,6 +11,9 @@ def get_sample():
     else :
          return Star.query.filter(Star.starUserName == current_user.userName).all()
 
+def get_entire_star():
+    return Star.query.all()
+
 def get_star_detail(starid):
     return Star.query.get_or_404(starid)
 
