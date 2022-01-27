@@ -12,51 +12,7 @@
 	<link rel="stylesheet" href="../static/login.css">
 
 	</head>
-  <header>
-    <div class="collapse bg-dark" id="navbarHeader">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 col-md-7 py-4">
-            <h4 class="text-white">A propos de Catcheur Picker</h4>
-            <p class="text-muted">Bienvenu sur notre site internet. Sur ce site vous pouvez répertorier l'intégralité de vos stars favorites. Idéale si vous êtes fan de WWE. Evidemment, vous n'êtes pas obligé de répertorier un catcheur, vous pouvez mettre des acteurs/actrices de vos films préférés.
-            <br>Conçu par SEVOT Maxime et BETTINI Jérémy pour le module Web-Server encadré par Gérard ROZSAVOLGYI à l'IUT d'Orléans au département informatique</p>
-          </div>
-          <div class="col-sm-4 offset-md-1 py-4">
-            <h4 class="text-white">Contact</h4>
-            <ul class="list-unstyled">
-              <li><a href="#" class="text-white">Maxime : maxime.sevot@etu.univ-orleans.fr</a></li>
-              <li><a href="#" class="text-white">Jérémy : jeremy.bettini@etu.univ-orleans.fr</a></li>
-              <li><a href="#" class="text-white">Combattez !</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="navbar navbar-dark bg-dark box-shadow">
-      <div class="container d-flex justify-content-between">
-        <a href="#" class="navbar-brand d-flex align-items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-          <strong>CatcheurAlbum</strong>
-        </a>
-        <div>
-          {% if current_user.is_authenticated %}
-            <li class="log"><a>Connecté en temps que : {{ current_user.userName }}</a></li>
-            <li><a href="{{ url_for('logout') }}">Logout
-              <span class="glyphicon glyphicon-log-out" title="Logout"></span>
-            </a></li>
-          {% else %}
-          <li class="log"><a>Vous n'êtes pas connecté, veuillez vous identifier</a></li>
-          <li><a href="{{ url_for('login') }}">Sign in
-            <span class="glyphicon glyphicon-log-out" title="Logout"></span>
-          </a></li>
-          {% endif %}
-          </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </div>
-  </header>
+  
 	<body>
 	<section class="ftco-section">
 		<div class="container">
@@ -83,27 +39,27 @@
                           </div>
 			      	<div class="d-flex">
 			      		<div class="w-100">
-			      			<h3 class="mb-4">Sign In</h3>
+			      			<h3 class="mb-4">Se connecter</h3>
 			      		</div>
 			      	</div>
 							<form action="#" class="signin-form">
 			      		<div class="form-group mt-3">
                   {{ form.username(size=50, class_="form-control")}}
-			      			<label class="form-control-placeholder" for="username">Username</label>
+			      			<label class="form-control-placeholder" for="username">Pseudo</label>
 			      		</div>
 		            <div class="form-group">
                   {{ form.password(size=50, class_="form-control")}}
-		              <label class="form-control-placeholder" for="password">Password</label>
+		              <label class="form-control-placeholder" for="password">Mot de passe</label>
 		            </div>
 		            <div class="form-group">
-		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3" href="/all/">Connexion</button>
 		            </div>
 		            <div class="form-group d-md-flex">
 		            	<div class="w-50 text-left">
 									</div>
 		            </div>
 		          </form>
-		          <p class="text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
+		          <p class="text-center">Vous n'êtes pas membre? <a href="{{ url_for('register') }}">Créer un compte</a></p>
 		        </div>
 		      </div>
 				</div>
