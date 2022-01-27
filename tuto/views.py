@@ -90,6 +90,10 @@ def recherche():
     recherche = request.form["recherche"]
     return render_template("home.html", stars = search_star(recherche), title="Résulat pour la recherche : %s" % recherche)
 
+@app.route("/all/")
+def all():
+    return render_template("home.html", stars=get_entire_star(), title="Liste de tous les catcheurs de Catcheur Picker")
+
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
     f = LoginForm()
