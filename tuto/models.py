@@ -29,7 +29,10 @@ def get_star_by_height():
         return Star.query.filter(Star.starUserName == current_user.userName).order_by(Star.starHeight).all()
 
 def get_star_by_weight():
-    return Star.query.filter(Star.starUserName == current_user.userName).order_by(Star.starWeight).all()
+    if current_user.userName == "admin":
+        return Star.query.order_by(Star.starWeight).all()
+    else :
+        return Star.query.filter(Star.starUserName == current_user.userName).order_by(Star.starWeight).all()
 
 def get_star_by_origin(nationnalite="Americain"):
     if current_user.userName == "admin":
@@ -45,6 +48,10 @@ def search_star(recherche):
 
 def get_star(id):
     return Star.query.filter(Star.starId == id)
+
+def addToFavorite(user, star):
+    print(user)
+    print(star)
 
 @login_manager.user_loader
 def load_user(username):

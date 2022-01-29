@@ -78,9 +78,18 @@
                     <p>Poids : {{ star.starWeight }}kg</p>
                     <p>Nationnalité : {{ star.starOrigin }}</p>
                     <small>Envie de te battre ?</small>
-                    <a href="/" class="btn btn-primary">
+                    <a href="https://fr.wikipedia.org/wiki/{{star.starPrenom}}_{{star.starNom}}" class="btn btn-primary" onclick="popup()">
                         Se Battre
                     </a>
+                    <button type="button" class="btn btn-secondary" onclick="addfavo()"> Favorite</button>
+                    <script type="text/javascript" charset="utf-8">
+                      function popup(){
+                        alert("Cette fonctionnalité est en cours développement");
+                      }
+                      function addfavo(){
+                        alert("Ajouté au favoris");
+                      }
+                    </script>
                 </div>
             </div>
         </div>

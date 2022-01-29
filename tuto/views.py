@@ -1,6 +1,5 @@
-from email.mime import image
+from logging import PlaceHolder
 import os
-from re import U
 from .app import app, db
 from flask import abort, flash, render_template, redirect, request, session, url_for
 from .models import *
@@ -35,17 +34,17 @@ class CreateStar(FlaskForm):
     origin = SelectField('Nationnalité', [DataRequired()], choices =[
                                                                     ('Inconnu', 'Inconnu'),
                                                                     ('Française', 'Française'),
-                                                                    ('americaine', 'Américaine'),
-                                                                    ('Américaine', 'Africaine'),
-                                                                    ('asiatique', 'Asiatique'),
-                                                                    ('Asiatique', 'Mexicaine'),
+                                                                    ('Américaine', 'Américaine'),
+                                                                    ('Africaine', 'Africaine'),
+                                                                    ('Asiatique', 'Asiatique'),
+                                                                    ('Mexicaine', 'Mexicaine'),
                                                                     ('Russe', 'Russe'),
                                                                     ('Italienne', 'Italienne'),
                                                                     ('Arabe', 'Arabe')
                                                                     ])
     img = FileField("Image")
-    height = StringField('Taille', validators =[validators.InputRequired()])
-    weight = StringField('Poids', validators =[validators.InputRequired()])
+    height = StringField('Taille en cm', validators =[validators.InputRequired()])
+    weight = StringField('Poids en kg', validators =[validators.InputRequired()])
     hairColor = SelectField('Couleur de cheveux', [DataRequired()], choices =[
                                                                              ('Blond', 'Blond'),
                                                                              ('Brun', 'Brun'),
@@ -63,7 +62,7 @@ def home():
     return render_template(
         "home.html",
         stars = get_sample(),
-        title="Liste des catcheurs"
+        title="Liste des catcheurs",
     )
 
 @app.route("/hairColor/", methods=['GET', 'POST'])
@@ -100,7 +99,6 @@ def login():
     if not f.is_submitted():
         f.next.data = request.args.get('next')
     elif f.validate_on_submit():
-        print("here")
         user = f.get_authenticated_user()
         if user:
             login_user(user)
@@ -111,7 +109,7 @@ def login():
 @app.route('/register/', methods=['GET', 'POST'])
 def register():
     f = LoginForm()
-    print(Utilisateur.query.get(f.username.data))
+    # print(Utilisateur.query.get(f.username.data))
     if f.validate_on_submit():
         if Utilisateur.query.get(f.username.data) == None :
             if f.password.data == f.confirmPassword.data:
@@ -120,6 +118,7 @@ def register():
                 newUser = Utilisateur(userName=f.username.data, userPassword=m.hexdigest())
                 db.session.add(newUser)
                 db.session.commit()
+                return redirect(url_for("login"))
     return render_template('register.html', form = f)
 
 @app.route('/logout/')
@@ -142,7 +141,6 @@ def save_img(form):
 @app.route("/editAjouter", methods=['GET', 'POST'])
 @login_required
 def editAjouter():
-    print(current_user.userName)
     form = CreateStar()
     if form.submit.data:
         img = save_img(form)
@@ -182,7 +180,6 @@ def editStar(id):
             imgEdit = a.starImg
         else :
             imgEdit = save_img(f)
-        print(imgEdit)
         Star.query.filter(Star.starId == id).update({"starNom": f.nom.data,
                                                      "starPrenom": f.prenom.data, 
                                                      "starDateNaiss": f.dateNaiss.data, 

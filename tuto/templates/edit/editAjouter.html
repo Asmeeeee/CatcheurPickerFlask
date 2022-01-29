@@ -13,7 +13,7 @@
       <div class="col-md-4 mb-3">
         <fieldset class="oui">
           {{ form.prenom.label }}
-          {{ form.prenom(size=20) }}
+          {{ form.prenom(size=20, placeholder="Dwayne") }}
         </fieldset>
         <div class="valid-tooltip">
           Looks good!
@@ -22,7 +22,7 @@
       <div class="col-md-4 mb-3">
         <fieldset class="oui">
           {{ form.nom.label }}
-          {{ form.nom(size=20) }}
+          {{ form.nom(size=20, placeholder="Johnson") }}
         </fieldset>
       <div class="valid-tooltip">
         Looks good!
@@ -51,7 +51,7 @@
     <div class="col-md-3 mb-3">
       <fieldset class="oui">
         {{ form.height.label }}
-        {{ form.height}}
+        {{ form.height(size=20, placeholder="1,96")}}
       </fieldset>
       <div class="invalid-tooltip">
       </div>
@@ -59,7 +59,7 @@
     <div class="col-md-3 mb-3">
       <fieldset class="oui">
         {{ form.weight.label }}
-        {{ form.weight }}
+        {{ form.weight(size=20, placeholder="118") }}
       </fieldset>
       <div class="invalid-tooltip">
       </div>
@@ -83,7 +83,13 @@
 </section>
   </article>
   <div id = "button">
-    {{ form.submit }}
+    {{ form.submit(onclick="add()") }}
 </div>
 </form>
+
+<script type="text/javascript" charset="utf-8">
+  function add(){
+    alert("Ajouté avec succès");
+  }
+</script>
 {% endblock %}

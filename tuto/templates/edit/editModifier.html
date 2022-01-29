@@ -12,23 +12,23 @@
   <article id="main">
   <section>
     <div class="form-row">
+      </div>
       <div class="col-md-4 mb-3">
-          <fieldset class="oui">
-            {{ formEdit.nom.label }}
-            {{ formEdit.nom(size=20) }}
-          </fieldset>
+        <fieldset class="oui">
+          {{ formEdit.prenom.label }}
+          {{ formEdit.prenom(size=20, placeholder="Dwayne") }}
+        </fieldset>
         <div class="valid-tooltip">
           Looks good!
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <fieldset class="oui">
-          {{ formEdit.prenom.label }}
-          {{ formEdit.prenom(size=20) }}
+          {{ formEdit.nom.label }}
+          {{ formEdit.nom(size=20, placeholder="Johnson") }}
         </fieldset>
-        <div class="valid-tooltip">
-          Looks good!
-        </div>
+      <div class="valid-tooltip">
+        Looks good!
       </div>
       <div class="col-md-4 mb-3">
         <fieldset class="oui">
@@ -64,7 +64,7 @@
               <div class="col-md-3 mb-3">
                 <fieldset class="oui">
                   {{ formEdit.height.label }}
-                  {{ formEdit.height }}
+                  {{ formEdit.height(size=20, placeholder="1,96")}}
                 </fieldset>
                 <div class="invalid-tooltip">
                 </div>
@@ -72,7 +72,7 @@
               <div class="col-md-3 mb-3">
                 <fieldset class="oui">
                   {{ formEdit.weight.label }}
-                  {{ formEdit.weight }}
+                  {{ formEdit.weight(size=20, placeholder="118") }}
                 </fieldset>
                 <div class="invalid-tooltip">
                 </div>
@@ -92,9 +92,18 @@
   </div>
   </article>
   <div id = "button">
-    {{ formEdit.submitRemove }}
-    {{ formEdit.submit }}
+    {{ formEdit.submitRemove(onclick="popup()") }}
+    {{ formEdit.submit(onclick="edit()") }}
   </div>
 
 </form>
+
+<script type="text/javascript" charset="utf-8">
+  function popup(){
+    confirm("Etes vous sur de vouloir supprimé cette catcheuse ?");
+  }
+  function edit(){
+    confirm("Modifé avec succès");
+  }
+</script>
 {% endblock %}

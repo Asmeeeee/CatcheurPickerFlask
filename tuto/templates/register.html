@@ -37,36 +37,36 @@
                               </div>
                             </div>
                           </div>
-			      	<div class="d-flex">
-			      		<div class="w-100">
-			      			<h3 class="mb-4">Créer un compte</h3>
+			      			<div class="d-flex">
+			      			<div class="w-100">
+			      				<h3 class="mb-4">Créer un compte</h3>
+			      			</div>
 			      		</div>
-			      	</div>
-							<form class="form-horizontal" role="form" method="POST" action="{{ url_for('register') }}">
-			      		{{ form.hidden_tag() }}
-                <div class="form-group mt-3">
-                  {{ form.username(size=50, class_="form-control", placeholder="Entrez un pseudo")}}
-			      			<label class="form-control-placeholder" for="username">Pseudo</label>
-			      		</div>
-		            <div class="form-group">
-                  {{ form.password(size=50, class_="form-control", placeholder="Entrez votre mot de passe")}}
-		              <label class="form-control-placeholder" for="password">Mot de passe</label>
-		            </div>
-                <div class="form-group">
-                  {{ form.confirmPassword(size=50, class_="form-control", placeholder="Confirmez votre mot de passe")}}
-		              <label class="form-control-placeholder" for="password">Confirmer votre mot de passe</label>
-		            </div>
-		            <div class="form-group">
-		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Créer un compte</button>
-		            </div>
-		            <div class="form-group d-md-flex">
-		            	<div class="w-50 text-left">
-									</div>
-		            </div>
-		          </form>
-              <p class="text-center">Vous avez déjà un compte ? <a href="{{ url_for('login') }}">Se connecter</a></p>
-		        </div>
-		      </div>
+						<form class="form-horizontal" role="form" method="POST" action="{{ url_for('register') }}">
+			      			{{ form.hidden_tag() }}
+                			<div class="form-group mt-3">
+                  				{{ form.username(size=50, class_="form-control", placeholder="Entrez un pseudo")}}
+			      				<label class="form-control-placeholder" for="username">Pseudo</label>
+			      			</div>
+		            		<div class="form-group">
+                  				{{ form.password(size=50, class_="form-control", placeholder="Entrez votre mot de passe")}}
+		              			<label class="form-control-placeholder" for="password">Mot de passe</label>
+		            		</div>
+                			<div class="form-group">
+                  				{{ form.confirmPassword(size=50, class_="form-control", placeholder="Confirmez votre mot de passe")}}
+		              			<label class="form-control-placeholder" for="password">Confirmer votre mot de passe</label>
+		            		</div>
+		            		<div class="form-group">
+		            			<button type="submit" class="form-control btn btn-primary rounded submit px-3">Créer un compte</button>
+		            		</div>
+		            		<div class="form-group d-md-flex">
+		            			<div class="w-50 text-left">
+								</div>
+		            		</div>
+		          		</form>
+              			<p class="text-center">Vous avez déjà un compte ? <a href="{{ url_for('login') }}">Se connecter</a></p>
+		        		</div>
+		      		</div>
 				</div>
 			</div>
 		</div>
