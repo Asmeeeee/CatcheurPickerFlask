@@ -1,0 +1,92 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="333" height="263" view_box="0 0 333 263"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.3.7 le Sun, 30 Jan 2022 04:59:06</desc>
+
+<rect id="frame" x="0" y="0" width="333" height="263" fill="#f7f7f7" stroke="none" stroke-width="0"/>
+
+<!-- Association Aime -->
+<line x1="285" y1="43" x2="167" y2="43" stroke="#7fbc41" stroke-width="2"/>
+<text x="231" y="60.0" fill="#c51b7d" font-family="Verdana" font-size="12">1,N</text>
+<line x1="56" y1="43" x2="167" y2="43" stroke="#7fbc41" stroke-width="2"/>
+<text x="108" y="60.0" fill="#c51b7d" font-family="Verdana" font-size="12">0,N</text>
+<g id="association-Aime">
+	<path d="M 176 18 a 14 14 90 0 1 14 14 V 43 h -46 V 32 a 14 14 90 0 1 14 -14" fill="#b8e186" stroke="#b8e186" stroke-width="0"/>
+	<path d="M 190 43.0 v 11 a 14 14 90 0 1 -14 14 H 158 a 14 14 90 0 1 -14 -14 V 43.0 H 46" fill="#e6f5d0" stroke="#e6f5d0" stroke-width="0"/>
+	<rect x="144" y="18" width="46" height="50" fill="none" rx="14" stroke="#7fbc41" stroke-width="2"/>
+	<line x1="144" y1="43" x2="190" y2="43" stroke="#7fbc41" stroke-width="1"/>
+	<text x="151" y="35.7" fill="#000000" font-family="Verdana" font-size="12">Aime</text>
+</g>
+
+<!-- Association Possede -->
+<line x1="56" y1="43" x2="56" y2="178" stroke="#7fbc41" stroke-width="2"/>
+<text x="61.0" y="94" fill="#c51b7d" font-family="Verdana" font-size="12">0,N</text>
+<line x1="167" y1="178" x2="56" y2="178" stroke="#7fbc41" stroke-width="2"/>
+<text x="94" y="195.0" fill="#c51b7d" font-family="Verdana" font-size="12">1,1</text>
+<g id="association-Possede">
+	<path d="M 74 153 a 14 14 90 0 1 14 14 V 178 h -64 V 167 a 14 14 90 0 1 14 -14" fill="#b8e186" stroke="#b8e186" stroke-width="0"/>
+	<path d="M 88 178.0 v 11 a 14 14 90 0 1 -14 14 H 38 a 14 14 90 0 1 -14 -14 V 178.0 H 64" fill="#e6f5d0" stroke="#e6f5d0" stroke-width="0"/>
+	<rect x="24" y="153" width="64" height="50" fill="none" rx="14" stroke="#7fbc41" stroke-width="2"/>
+	<line x1="24" y1="178" x2="88" y2="178" stroke="#7fbc41" stroke-width="1"/>
+	<text x="31" y="170.7" fill="#000000" font-family="Verdana" font-size="12">Possede</text>
+</g>
+
+<!-- Association Appartenir -->
+<line x1="285" y1="43" x2="285" y2="178" stroke="#7fbc41" stroke-width="2"/>
+<text x="290.0" y="85" fill="#c51b7d" font-family="Verdana" font-size="12">1,N</text>
+<line x1="167" y1="178" x2="285" y2="178" stroke="#7fbc41" stroke-width="2"/>
+<text x="219" y="195.0" fill="#c51b7d" font-family="Verdana" font-size="12">0,N</text>
+<g id="association-Appartenir">
+	<path d="M 310 153 a 14 14 90 0 1 14 14 V 178 h -78 V 167 a 14 14 90 0 1 14 -14" fill="#b8e186" stroke="#b8e186" stroke-width="0"/>
+	<path d="M 324 178.0 v 11 a 14 14 90 0 1 -14 14 H 260 a 14 14 90 0 1 -14 -14 V 178.0 H 78" fill="#e6f5d0" stroke="#e6f5d0" stroke-width="0"/>
+	<rect x="246" y="153" width="78" height="50" fill="none" rx="14" stroke="#7fbc41" stroke-width="2"/>
+	<line x1="246" y1="178" x2="324" y2="178" stroke="#7fbc41" stroke-width="1"/>
+	<text x="253" y="170.7" fill="#000000" font-family="Verdana" font-size="12">Appartenir</text>
+</g>
+
+<!-- Entity Utilisateur -->
+<g id="entity-Utilisateur">
+	<g id="frame-Utilisateur">
+		<rect x="9" y="9" width="94" height="25" fill="#f1b6da" stroke="#f1b6da" stroke-width="0"/>
+		<rect x="9" y="34.0" width="94" height="43" fill="#fde0ef" stroke="#fde0ef" stroke-width="0"/>
+		<rect x="9" y="9" width="94" height="68" fill="none" stroke="#de77ae" stroke-width="2"/>
+		<line x1="9" y1="34" x2="103" y2="34" stroke="#de77ae" stroke-width="1"/>
+	</g>
+	<text x="25" y="26.7" fill="#000000" font-family="Verdana" font-size="12">Utilisateur</text>
+	<text x="14" y="51.8" fill="#000000" font-family="Verdana" font-size="12">userName</text>
+	<text x="14" y="68.8" fill="#000000" font-family="Verdana" font-size="12">userPassword</text>
+</g>
+
+<!-- Entity Favoris -->
+<g id="entity-Favoris">
+	<g id="frame-Favoris">
+		<rect x="258" y="18" width="54" height="25" fill="#f1b6da" stroke="#f1b6da" stroke-width="0"/>
+		<rect x="258" y="43.0" width="54" height="25" fill="#fde0ef" stroke="#fde0ef" stroke-width="0"/>
+		<rect x="258" y="18" width="54" height="50" fill="none" stroke="#de77ae" stroke-width="2"/>
+		<line x1="258" y1="43" x2="312" y2="43" stroke="#de77ae" stroke-width="1"/>
+	</g>
+	<text x="263" y="35.7" fill="#000000" font-family="Verdana" font-size="12">Favoris</text>
+	<text x="263" y="60.8" fill="#000000" font-family="Verdana" font-size="12">id</text>
+</g>
+
+<!-- Entity Star -->
+<g id="entity-Star">
+	<g id="frame-Star">
+		<rect x="120" y="102" width="94" height="25" fill="#f1b6da" stroke="#f1b6da" stroke-width="0"/>
+		<rect x="120" y="127.0" width="94" height="127" fill="#fde0ef" stroke="#fde0ef" stroke-width="0"/>
+		<rect x="120" y="102" width="94" height="152" fill="none" stroke="#de77ae" stroke-width="2"/>
+		<line x1="120" y1="127" x2="214" y2="127" stroke="#de77ae" stroke-width="1"/>
+	</g>
+	<text x="154" y="119.7" fill="#000000" font-family="Verdana" font-size="12">Star</text>
+	<text x="125" y="144.7" fill="#000000" font-family="Verdana" font-size="12">starId</text>
+	<text x="125" y="161.7" fill="#000000" font-family="Verdana" font-size="12">starName</text>
+	<text x="125" y="178.8" fill="#000000" font-family="Verdana" font-size="12">starLastName</text>
+	<text x="125" y="195.8" fill="#000000" font-family="Verdana" font-size="12">starOrigin</text>
+	<text x="125" y="212.8" fill="#000000" font-family="Verdana" font-size="12">starHairColor</text>
+	<text x="125" y="229.8" fill="#000000" font-family="Verdana" font-size="12">starHeight</text>
+	<text x="125" y="246.8" fill="#000000" font-family="Verdana" font-size="12">starWeight</text>
+</g>
+</svg>
