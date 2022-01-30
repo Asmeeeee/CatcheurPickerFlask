@@ -1,3 +1,83 @@
+- Name : Paul
+  LastName : Wight
+  DateNaiss : 1999-02-08
+  img : Paul-Wight.png
+  hairColor : Chauve
+  taille : 2,13
+  poids : 174
+  nationnalite : Américaine
+  userName : maxime
+
+- Name : Roman
+  LastName : Reigns
+  DateNaiss : 1985-05-25
+  img : Roman-Reigns.jpg
+  hairColor : Noir
+  taille : 1,91
+  poids : 120
+  nationnalite : Américaine
+  userName : maxime
+
+- Name : Randal
+  LastName : Orton
+  DateNaiss : 1980-04-01
+  img : Randal-Orton.png
+  hairColor : Brun
+  taille : 1,96
+  poids : 113
+  nationnalite : Américaine
+  userName : maxime
+
+- Name : Rodney
+  LastName : Anoai
+  DateNaiss : 1966-10-02
+  img : Rodney-Anoai.jpg
+  hairColor : Noir
+  taille : 1,93
+  poids : 267
+  nationnalite : Américaine
+  userName : maxime
+
+- Name : Colby Daniel
+  LastName : Lopez
+  DateNaiss : 1986-05-28
+  img : Colby-Daniel.jpg
+  hairColor : Brun
+  taille : 1,85
+  poids : 98
+  nationnalite : Américaine
+  userName : maxime
+
+- Name : Terry
+  LastName : Bollea
+  DateNaiss : 1953-08-11
+  img : Terry-Bollea.jpg
+  hairColor : Blond
+  taille : 2,01
+  poids : 137
+  nationnalite : Américaine
+  userName : maxime
+
+- Name : Andre
+  LastName : Roussimoff
+  DateNaiss : 1946-05-19
+  img : Andre-Roussimoff.jpg
+  hairColor : Brun
+  taille : 2,24
+  poids : 236
+  nationnalite : francaise
+  userName : maxime
+
+- Name : Gerard 
+  LastName : Herve
+  DateNaiss : 1953-06-20
+  img : Gerard-Herve.jpg
+  hairColor : Chauve
+  taille : 1,78
+  poids : 100
+  nationnalite : francaise
+  userName : maxime
+
 - Name : Johnson
   LastName : Dwayne
   DateNaiss : 1972-05-02
